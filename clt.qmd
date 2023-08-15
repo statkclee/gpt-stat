@@ -12,26 +12,19 @@ format:
     include-in-header: 
       text: |
         \usepackage{sampl}
-        \usepackage{kpfonts}        
         %%%% fonts
         \setmainfont{STIX Two Text}
         \setsansfont{TeX Gyre Heros}
         \setkomainfont(KoPubBatang Light)(KoPubBatang Bold)(KoPubDotum Light)[Scale=MatchUppercase]
         \setkosansfont(KoPubDotum Light)(KoPubDotum Bold)(KoPubDotum Medium)[Scale=MatchUppercase]
         \newfontfamily\fallbackhanjafont{Noto Serif KR}[Scale=.9]
-        \setkomonofont{FreeMono}        
         \chapterstyle{demo}
         \AtBeginDocument{\frontmatter}
         \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\},baselinestretch=1.1}
         \makeindex
-    include-after-body: 
-      text: |
-        \printindex
     keep-tex: true
     number-sections: true
     toc: true
-    latex-makeindex: "komkindex"
-    latex-makeindex-opts: [-k, '-s sampl']
     cite-method: "biblatex"
 language:
   en:
