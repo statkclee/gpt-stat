@@ -16,79 +16,79 @@
   {
     "objectID": "clt.html",
     "href": "clt.html",
-    "title": "\n2  중심극한정리 예시\n",
+    "title": "\n3  중심극한정리 예시\n",
     "section": "",
-    "text": "3 중심극한정리\n상자 안에 1에서 999까지 숫자가 표시된 999개의 상태가 균질한 공(\\(X\\))을 넣고 이를 특정한 모집단(population)이라고 가정하자. 이 모집단의 평균 \\(\\mu\\)은 500이다. 모집단의 분산 \\(\\mathrm{var}(X)\\)는 80,475이다.\n이 중 30개의 공을 50회에 걸쳐 반복 추출한다. 이 경우 표본평균의 분포는 \\(E(\\bar{X}_i)=\\mu(X)\\)이고 분산이 \\(\\mathrm{var}(\\bar{X_i})=\\frac{\\sigma^2}{n}\\)인 정규분포에 근사한다. 즉, \\(X \\sim \\mathcal{N}(500,~283.7^2)\\)이다."
+    "text": "4 중심극한정리\n상자 안에 1에서 999까지 숫자가 표시된 999개의 상태가 균질한 공(\\(X\\))을 넣고 이를 특정한 모집단(population)이라고 가정하자. 이 모집단의 평균 \\(\\mu\\)은 500이다. 모집단의 분산 \\(\\mathrm{var}(X)\\)는 80,475이다.\n이 중 30개의 공을 50회에 걸쳐 반복 추출한다. 이 경우 표본평균의 분포는 \\(E(\\bar{X}_i)=\\mu(X)\\)이고 분산이 \\(\\mathrm{var}(\\bar{X_i})=\\frac{\\sigma^2}{n}\\)인 정규분포에 근사한다. 즉, \\(X \\sim \\mathcal{N}(500,~283.7^2)\\)이다."
   },
   {
     "objectID": "clt.html#이를-실험을-통해-살펴보자.",
     "href": "clt.html#이를-실험을-통해-살펴보자.",
-    "title": "\n2  중심극한정리 예시\n",
-    "section": "\n4.1 이를 실험을 통해 살펴보자.",
-    "text": "4.1 이를 실험을 통해 살펴보자.\n999개의 공이 든 상자에서 30개의 공을 50회에 걸쳐 무작위 반복추출하고(30개의 공을 뽑은 뒤, 다시 그 공을 상자 안에 집어 놓고 상자를 처음과 같은 상태가 되도록 뒤흔들어서 다시 30개의 공을 뽑는 것을 50회 반복한다), 그 각각의 평균을 기록하면 다음과 같다.\n\n\n50회 반복추출의 평균값: 361.8, 587.8, 496.9, 535.6, 523.3, 634.7, 459.8, 488.7, 447.6, 560.4, 513.1, 440.7, 449.2, 431.0, 475.1, 458.3, 552.7, 465.0, 489.6, 484.3, 485.1, 527.1, 552.3, 549.4, 468.7, 500.8, 552.3, 464.9, 514.8, 445.4, 474.9, 488.3, 545.7, 591.5, 416.3, 521.8, 516.3, 498.5, 490.0, 615.1, 582.4, 458.4, 452.2, 513.4, 499.9, 467.7, 438.3, 521.1, 550.5, 622.5\n\n\n표본평균값의 분포를 히스토그램으로 표현하면 그림 4.1와 같다.\n\n\n\n\n그림 4.1: 표본평균의 히스토그램"
+    "title": "\n3  중심극한정리 예시\n",
+    "section": "\n5.1 이를 실험을 통해 살펴보자.",
+    "text": "5.1 이를 실험을 통해 살펴보자.\n999개의 공이 든 상자에서 30개의 공을 50회에 걸쳐 무작위 반복추출하고(30개의 공을 뽑은 뒤, 다시 그 공을 상자 안에 집어 놓고 상자를 처음과 같은 상태가 되도록 뒤흔들어서 다시 30개의 공을 뽑는 것을 50회 반복한다), 그 각각의 평균을 기록하면 다음과 같다.\n\n\n50회 반복추출의 평균값: 361.8, 587.8, 496.9, 535.6, 523.3, 634.7, 459.8, 488.7, 447.6, 560.4, 513.1, 440.7, 449.2, 431.0, 475.1, 458.3, 552.7, 465.0, 489.6, 484.3, 485.1, 527.1, 552.3, 549.4, 468.7, 500.8, 552.3, 464.9, 514.8, 445.4, 474.9, 488.3, 545.7, 591.5, 416.3, 521.8, 516.3, 498.5, 490.0, 615.1, 582.4, 458.4, 452.2, 513.4, 499.9, 467.7, 438.3, 521.1, 550.5, 622.5\n\n\n표본평균값의 분포를 히스토그램으로 표현하면 그림 5.1와 같다.\n\n\n\n\n그림 5.1: 표본평균의 히스토그램"
   },
   {
     "objectID": "clt.html#그림에서-보듯",
     "href": "clt.html#그림에서-보듯",
-    "title": "\n2  중심극한정리 예시\n",
-    "section": "\n4.2 그림에서 보듯",
-    "text": "4.2 그림에서 보듯\n\\(\\bar{X_i}\\)는 500을 중심으로 좌우대칭적으로 분포하고 있다. 이들의 평균은 503.6으로 모평균 500과 근사하다. 이들 중 이론적으로 산출한 평균으로부터 약 2 표준편차만큼 떨어진 구간(\\(\\mu \\pm 2\\frac{\\sigma}{\\sqrt{n}}\\)) 안에 속하는 값, 즉 \\([396.4, 603.6]\\)의 범위 안에 있는 값의 개수를 세면 모두 46개이다.\n표본평균 분포의 약 95%를 포괄하고 있음을 알 수 있다."
+    "title": "\n3  중심극한정리 예시\n",
+    "section": "\n5.2 그림에서 보듯",
+    "text": "5.2 그림에서 보듯\n\\(\\bar{X_i}\\)는 500을 중심으로 좌우대칭적으로 분포하고 있다. 이들의 평균은 503.6으로 모평균 500과 근사하다. 이들 중 이론적으로 산출한 평균으로부터 약 2 표준편차만큼 떨어진 구간(\\(\\mu \\pm 2\\frac{\\sigma}{\\sqrt{n}}\\)) 안에 속하는 값, 즉 \\([396.4, 603.6]\\)의 범위 안에 있는 값의 개수를 세면 모두 46개이다.\n표본평균 분포의 약 95%를 포괄하고 있음을 알 수 있다."
   },
   {
     "objectID": "clt.html#r-markdown",
     "href": "clt.html#r-markdown",
-    "title": "\n2  중심극한정리 예시\n",
-    "section": "\n4.3 R Markdown",
-    "text": "4.3 R Markdown\nRender 버튼을 누르면 문서가 생성된다. 여기에는 내용과 함께 내장된 R 코드 청크가 실행된다. R 코드는 다음과 같이 포함할 수 있다.\n\nsummary(cars)\n\n     speed           dist       \n Min.   : 4.0   Min.   :  2.00  \n 1st Qu.:12.0   1st Qu.: 26.00  \n Median :15.0   Median : 36.00  \n Mean   :15.4   Mean   : 42.98  \n 3rd Qu.:19.0   3rd Qu.: 56.00  \n Max.   :25.0   Max.   :120.00"
+    "title": "\n3  중심극한정리 예시\n",
+    "section": "\n5.3 R Markdown",
+    "text": "5.3 R Markdown\nRender 버튼을 누르면 문서가 생성된다. 여기에는 내용과 함께 내장된 R 코드 청크가 실행된다. R 코드는 다음과 같이 포함할 수 있다.\n\nsummary(cars)\n\n     speed           dist       \n Min.   : 4.0   Min.   :  2.00  \n 1st Qu.:12.0   1st Qu.: 26.00  \n Median :15.0   Median : 36.00  \n Mean   :15.4   Mean   : 42.98  \n 3rd Qu.:19.0   3rd Qu.: 56.00  \n Max.   :25.0   Max.   :120.00"
   },
   {
     "objectID": "clt.html#플로트-포함하기",
     "href": "clt.html#플로트-포함하기",
-    "title": "\n2  중심극한정리 예시\n",
-    "section": "\n4.4 플로트 포함하기",
-    "text": "4.4 플로트 포함하기\n플로트도 포함할 수 있으니, 다음과 같다.\n\n\n\n\n그림 4.2: Pressure\n\n\n\necho = FALSE 파라미터를 주었기 때문에 이 플로트를 생성하는 R 코드가 인쇄되지 않는다. 그림 4.2을 보자."
+    "title": "\n3  중심극한정리 예시\n",
+    "section": "\n5.4 플로트 포함하기",
+    "text": "5.4 플로트 포함하기\n플로트도 포함할 수 있으니, 다음과 같다.\n\n\n\n\n그림 5.2: Pressure\n\n\n\necho = FALSE 파라미터를 주었기 때문에 이 플로트를 생성하는 R 코드가 인쇄되지 않는다. 그림 5.2을 보자."
   },
   {
     "objectID": "clt.html#재미있는-배열-문제",
     "href": "clt.html#재미있는-배열-문제",
-    "title": "\n2  중심극한정리 예시\n",
-    "section": "\n4.5 재미있는 배열 문제",
-    "text": "4.5 재미있는 배열 문제\n\nN, C = 13,3\na=[ f\"{i+1}\" for i in range(N) ]\nfor i in range(1, C):\n    if len(a)%C == i: a.insert((len(a)//C+1)*(i+1)-1, \" \")\nprint(\"\\\\begin{tabular}{%s}\"%(\"l\"*C))\n\n\\begin{tabular}{lll}\n\nfor i in range(len(a)//C): print(\" & \".join(a[i::len(a)//C]), \" \\\\\\\\\")\n\n1 & 6 & 10  \\\\\n2 & 7 & 11  \\\\\n3 & 8 & 12  \\\\\n4 & 9 & 13  \\\\\n5 &   &    \\\\\n\nprint(\"\\\\end{tabular}\")\n\n\\end{tabular}\n\n\n이 문제는 흥미롭다. KTUG 게시판에 올라온 문제에 대하여 aud라는 분이 단 답변이다. 한편 로도 같은 일을 할 수 있음이 답글 중에 제시되어 있다."
+    "title": "\n3  중심극한정리 예시\n",
+    "section": "\n5.5 재미있는 배열 문제",
+    "text": "5.5 재미있는 배열 문제\n\nN, C = 13,3\na=[ f\"{i+1}\" for i in range(N) ]\nfor i in range(1, C):\n    if len(a)%C == i: a.insert((len(a)//C+1)*(i+1)-1, \" \")\nprint(\"\\\\begin{tabular}{%s}\"%(\"l\"*C))\n\n\\begin{tabular}{lll}\n\nfor i in range(len(a)//C): print(\" & \".join(a[i::len(a)//C]), \" \\\\\\\\\")\n\n1 & 6 & 10  \\\\\n2 & 7 & 11  \\\\\n3 & 8 & 12  \\\\\n4 & 9 & 13  \\\\\n5 &   &    \\\\\n\nprint(\"\\\\end{tabular}\")\n\n\\end{tabular}\n\n\n이 문제는 흥미롭다. KTUG 게시판에 올라온 문제에 대하여 aud라는 분이 단 답변이다. 한편 로도 같은 일을 할 수 있음이 답글 중에 제시되어 있다."
   },
   {
     "objectID": "clt.html#개관",
     "href": "clt.html#개관",
-    "title": "\n2  중심극한정리 예시\n",
-    "section": "\n5.1 개관",
-    "text": "5.1 개관\nQuarto의 특징 중의 하나는  문서의 소스를 그대로 집어넣어도 된다는 것이다. 이 장의 텍스트는 다른 곳에서 작성한  소스를 복사한 것이다."
+    "title": "\n3  중심극한정리 예시\n",
+    "section": "\n6.1 개관",
+    "text": "6.1 개관\nQuarto의 특징 중의 하나는  문서의 소스를 그대로 집어넣어도 된다는 것이다. 이 장의 텍스트는 다른 곳에서 작성한  소스를 복사한 것이다."
   },
   {
     "objectID": "clt.html#표-그리기",
     "href": "clt.html#표-그리기",
-    "title": "\n2  중심극한정리 예시\n",
-    "section": "\n5.2 표 그리기",
-    "text": "5.2 표 그리기\n다른 곳에서 책을 하나 조판하던 때에, tabular의 괘선에 색을 입혀달라는 요구가 있었다. 2020년경이었는데, 당시로서 이것을 구현하는 것은 거의 불가능해 보였으나 어찌어찌 tabular 자체 코드를 해킹해서 어렵사리 성공했더랬다. 그리고 잠시 지났더니 가 나왔다. 조금 더 일찍 나왔다면 그 고생을 하지 않았을 것 아닌가!\n이 패키지를 사용하면 그동안 골칫거리였던 tabular 관련 문제가 대부분 해결된다. 사용법이 조금 복잡해보일지 모르지만 익숙해지면 편하게 쓸 수 있다."
+    "title": "\n3  중심극한정리 예시\n",
+    "section": "\n6.2 표 그리기",
+    "text": "6.2 표 그리기\n다른 곳에서 책을 하나 조판하던 때에, tabular의 괘선에 색을 입혀달라는 요구가 있었다. 2020년경이었는데, 당시로서 이것을 구현하는 것은 거의 불가능해 보였으나 어찌어찌 tabular 자체 코드를 해킹해서 어렵사리 성공했더랬다. 그리고 잠시 지났더니 가 나왔다. 조금 더 일찍 나왔다면 그 고생을 하지 않았을 것 아닌가!\n이 패키지를 사용하면 그동안 골칫거리였던 tabular 관련 문제가 대부분 해결된다. 사용법이 조금 복잡해보일지 모르지만 익숙해지면 편하게 쓸 수 있다."
   },
   {
     "objectID": "clt.html#footnotes-in-boxed-environment",
     "href": "clt.html#footnotes-in-boxed-environment",
-    "title": "\n2  중심극한정리 예시\n",
-    "section": "\n5.3 footnotes in boxed environment",
-    "text": "5.3 footnotes in boxed environment\n의 apparatus 중에 minipage footnote라는 것이 있다. 예를 들면 다음과 같은 것이다.\n이것은 매우 유용한 장치이기는 하나, 단행본을 출간하는 입장에서 가끔 모든 각주를 페이지 하단에 넣으라는 요구를 받을 때가 있다. 가장 간단한 해결책은 명령을 와 로 분해하는 것이다."
+    "title": "\n3  중심극한정리 예시\n",
+    "section": "\n6.3 footnotes in boxed environment",
+    "text": "6.3 footnotes in boxed environment\n의 apparatus 중에 minipage footnote라는 것이 있다. 예를 들면 다음과 같은 것이다.\n이것은 매우 유용한 장치이기는 하나, 단행본을 출간하는 입장에서 가끔 모든 각주를 페이지 하단에 넣으라는 요구를 받을 때가 있다. 가장 간단한 해결책은 명령을 와 로 분해하는 것이다."
   },
   {
     "objectID": "clt.html#문헌목록",
     "href": "clt.html#문헌목록",
-    "title": "\n2  중심극한정리 예시\n",
-    "section": "\n5.4 문헌목록",
-    "text": "5.4 문헌목록\n참고 문헌 인용과 목록 생성 실험을 합니다. 한국어 문헌과 구미어 문헌은 그 목록형성과 인용 방법이 다릅니다. 한국어 문헌의 예를 들면, [@kimuycwung_hankwukphan_2003]같고, 영어 문헌은 예를 들면, [@Allport:1992:OND]같습니다."
+    "title": "\n3  중심극한정리 예시\n",
+    "section": "\n6.4 문헌목록",
+    "text": "6.4 문헌목록\n참고 문헌 인용과 목록 생성 실험을 합니다. 한국어 문헌과 구미어 문헌은 그 목록형성과 인용 방법이 다릅니다. 한국어 문헌의 예를 들면, [@kimuycwung_hankwukphan_2003]같고, 영어 문헌은 예를 들면, [@Allport:1992:OND]같습니다."
   },
   {
     "objectID": "references.html",
     "href": "references.html",
-    "title": "References",
+    "title": "참고문헌",
     "section": "",
-    "text": "Allport, G., and P. Jarratt. 1992. “The Old and the New in\nDocument Processing.” Electronic Library 10 (1): 41–45.\n\n\n김의중, 이상익, 정도언, 신민섭, and 윤인영. 2003. “한국판\n기분상태척도(k-POMS)의 표준화와 신뢰도와 타당도\n평가.” 수면·정신생리 10 (1): 39–51."
+    "text": "Stevens, Stanley Smith. 1946. “On the Theory of Scales of\nMeasurement.” Science 103 (2684): 677–80. http://www.jstor.org/stable/1671815.\n\n\nWickham, Hadley, Mine Çetinkaya-Rundel, and Garrett Grolemund. 2023.\nR for Data Science. \" O’Reilly Media, Inc.\".\n\n\nWiener, Norbert. 1921. “A New Theory of Measurement: A Study in\nthe Logic of Mathematics.” Proceedings of the London\nMathematical Society 2 (1): 181–205.\n\n\n이경화. 2020. 고등학교 실용통계. 통계청 통계교육원."
   },
   {
     "objectID": "case_study.html#v2-rocket",
@@ -124,5 +124,61 @@
     "title": "\n1  프로이센 기병\n",
     "section": "\n1.3 런던 투하 V2 로켓",
     "text": "1.3 런던 투하 V2 로켓\n2차 세계대전 중 독일은 신형 무기 V1, V2 로켓을 개발하여 전쟁 막판에 영국 런던을 폭격하여 반전을 노렸다. 독일 신형폭탄의 공격을 받은 영국에서는 독일에서 발사한 신형 폭탄이 정밀 타격한 것인지 아니면 무작위로 대충 발사를 한 것인지 데이터를 통해 검정을 하고자 한다. 1 2\n\n1.3.1 데이터\n가장 먼저 데이터를 준비한다. 데이터는 R.D. Clarke, “An Applicatin of the Poisson Distribution”을 참조한다.\n\n# 1. 기본 데이터 --------- \n\nbombs &lt;- c(\"0 개\",\"1 개\", \"2 개\",\"3 개\",\"4 개\",\"5 개 이상\")\nhit &lt;- c(229, 211, 93, 35, 7, 1)\nexpected &lt;- c(226.74, 211.39, 98.54, 30.62, 7.14, 1.57)\n\nbomb_df &lt;- tibble(bombs, hit, expected)\nbomb_df |&gt; \n  gt() |&gt; \n  gt_theme_538()\n\n\n\n\n\nbombs\n      hit\n      expected\n    \n\n\n0 개\n229\n226.74\n\n\n1 개\n211\n211.39\n\n\n2 개\n93\n98.54\n\n\n3 개\n35\n30.62\n\n\n4 개\n7\n7.14\n\n\n5 개 이상\n1\n1.57\n\n\n\n\n\n\n\n1.3.2 포아송 분포\n런던에 떨어진 폭탄이 포아송 분포, 즉 무작위로 떨어진 것이라고 가정하고 시각화를 한다. 포아송 분포는 모수가 \\(\\lambda\\) 하나만 추정하면 되기 때문에 데이터에서 모수를 추정한다.\n\\[P(\\text{ 해당 구간에서 발생한 k개 사건(k events in interval)}) = e^{-\\lambda}\\frac{\\lambda^k}{k!}\\]\n\n# 2. 포아송 분포 --------- \n\nhit &lt;- 537\narea &lt;- 576\n\n(lambda &lt;- hit/area)\n\n[1] 0.9322917\n\nggplot(bomb_df, aes(x=bombs,xend=bombs, y=0, yend=hit)) +\n  geom_segment(size=1.5) +\n  geom_point(aes(bombs, expected), size=2, color=\"red\") +\n  labs(x=\"런던 지역에 투하된 폭탄 수\", y=\"런던 지역 숫자\", title=\"영국 런던에 떨어진 V2 로켓 폭탄\",\n       subtitle=\"실제 투하 폭탄수와 포아송 분포로 추정한 폭탄수\")\n\n\n\n\n\n\n\n모수(\\(\\lambda\\))는 0.9322917로 추정된다. 이를 실제 데이터와 포아송 분포에서 나온 데이터와 겹쳐 시각화한다.\n예를 들어, 폭탄이 투하되지 않을 확률은 다음과 같다.\n\\[P(x=0) = e^{-0.9322917}\\frac{0.9322917^0}{0!} = 0.3936506\\]\n이를 R 코드로 표현하면 다음과 같다.\n\nlambda^0 *exp(-lambda) / factorial(0)\n\n[1] 0.3936506\n\n\n\n1.3.3 가설 검정\n시각적으로 살펴봤지만, 통계적 가설검정을 통해 다시 한번 런던에 투척된 폭탄이 포아송 분포를 따르는 것인지 검정해본다.\n\n귀무가설(\\(H_0\\)): 런던에 투하된 폭탄은 무작위로 떨어진 것이다. 즉, 폭탄이 떨어진 분포는 포아송 분포다.\n대립가설(\\(H_A\\)): 폭탄이 떨어진 것은 의도를 갖고 특정지역에 투하된 것이다.\n\n유의수준을 설정하고 검정통계량 \\(\\chi^2\\)을 정의해서 계산하면 귀무가설을 채택하게 된다.\n\n# 3. 통계적 검정 --------- \n\nchisq.test(bomb_df$hit, p=bomb_df$expected, rescale.p=TRUE, simulate.p.value=TRUE)\n\n\n    Chi-squared test for given probabilities with simulated p-value (based\n    on 2000 replicates)\n\ndata:  bomb_df$hit\nX-squared = 1.1709, df = NA, p-value = 0.9475\n\n# 4. 최종 데이터 ---------\n\nbomb_df$r_expected &lt;- 573 * c( dpois(0:4, lambda), 1 - sum(dpois(0:4, lambda)))\n\nbomb_df |&gt; \n  gt() |&gt; \n    gt_theme_538()\n\n\n\n\n\nbombs\n      hit\n      expected\n      r_expected\n    \n\n\n0 개\n229\n226.74\n225.561771\n\n\n1 개\n211\n211.39\n210.289359\n\n\n2 개\n93\n98.54\n98.025509\n\n\n3 개\n35\n30.62\n30.462788\n\n\n4 개\n7\n7.14\n7.100051\n\n\n5 개 이상\n1\n1.57\n1.560522\n\n\n\n\n\n\n\n1.3.4 지리정보를 통한 이해\n공간정보를 활용한 사례로 이를 공간정보에 시각화하면 다음과 같다. 물론 정확한 데이터가 없어 런던 남부에 떨어진 폭탄이 포아송 분포를 따른다고 가정하고 576개 구획으로 나눈 것에 임의로 폭탄이 떨어진 것을 시각화하면 다음과 같다.\n\n# 5. 지리정보 ---------\nlibrary(spatstat)\npar(mar = rep(0, 4))\n\n# 24*24 = 576\nsouth_london &lt;- rpoispp(lambda, win = owin(c(0, 24), c(0, 24)))\nplot(south_london, main=\"\", cex=0.5)\nabline(h = 0:24, v = 0:24, col = \"lightgray\", lty = 3)\n\n\n\n\n\n\n\n포아송 분포를 가정하고 통계적 검정도 물론 가능하다. spatstat 팩키지의 함수를 활용하여 통계적 검정을 해도 동일한 결론에 도달하게 된다.\n\nbomb_test &lt;- quadrat.test(south_london, nx = 24, ny = 24, method=\"Chisq\")\nbomb_test\n\n\n    Chi-squared test of CSR using quadrat counts\n\ndata:  south_london\nX2 = 563.78, df = 575, p-value = 0.7541\nalternative hypothesis: two.sided\n\nQuadrats: 24 by 24 grid of tiles\nTessellation is marked"
+  },
+  {
+    "objectID": "data_mgmt.html",
+    "href": "data_mgmt.html",
+    "title": "\n1  데이터 관리 방법론\n",
+    "section": "",
+    "text": "2 데이터프레임\nR 은 6가지 기본 벡터로 자료를 저장하지만, 이외에 행렬(matrix), 데이터프레임(data.frame), 리스트(list) 자료구조가 있다. 하지만, 자료분석을 위해서 데이터를 데이터셋의 형태로 구성을 해야한다. 데이터셋이 중요한 이유는 자료를 분석하기 위해서 다양한 형태의 개별 자료를 통합적으로 분석하기 위해서다. 이를 위해서 리스트 자료구조로 일단 모으게 된다. 예를 들어 개인 신용분석을 위해서는 개인의 소득, 부채, 성별, 학력 등등의 숫자형, 문자형, 요인(Factor)형 등의 자료를 데이터셋에 담아야 한다. 특히 변수와-관측값 (Variable-Observation) 형식의 자료를 분석하기 위해서는 데이터프레임(data.frame)을 사용한다. 데이터프레임은 모든 변수에 대해서 관측값이 같은 길이를 갖도록 만들어 놓은 것이다.\n데이터프레임은 data.frame 함수를 사용해서 생성한다. R 객체 구조 파악을 위해서는 간단한 자료의 경우 데이터 형식을 확인할 수 있는 1–2줄 정도의 간단한 스크립트와 명령어를 통해서 확인이 가능하지만, 복잡한 데이터의 구조를 파악하기 위해서는 summary 함수와 str 함수를 통해서 확인해야 한다.\n# 벡터를 정의한다.\nname &lt;- c(\"Mercury\", \"Venus\", \"Earth\", \"Mars\", \"Jupiter\", \"Saturn\", \"Uranus\", \"Neptune\")\ntype &lt;- c(\"Terrestrial planet\", \"Terrestrial planet\", \"Terrestrial planet\", \n          \"Terrestrial planet\", \"Gas giant\", \"Gas giant\", \"Gas giant\", \"Gas giant\")\ndiameter &lt;- c(0.382, 0.949, 1, 0.532, 11.209, 9.449, 4.007, 3.883)\nrotation &lt;- c(58.64, -243.02, 1, 1.03, 0.41, 0.43, -0.72, 0.67)\nrings &lt;- c(FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE)\n\n# 벡터를 합쳐서 데이터프레임을 생성\nplanets_df &lt;-data.frame(name, type, diameter, rotation, rings)"
+  },
+  {
+    "objectID": "data_mgmt.html#측정-변수의-구분",
+    "href": "data_mgmt.html#측정-변수의-구분",
+    "title": "\n1  데이터 관리 방법론\n",
+    "section": "\n1.1 측정 변수의 구분",
+    "text": "1.1 측정 변수의 구분\n자료가 갖는 고유한 특성을 숫자료 표현한 측정 척도에 따라, 명목형, 순서형, 구간형, 비율형 네가지로 구분된다. 측정 척도에 따라 유의미한 통계량도 함께 정해진다. @wiener1921new [@lee2020godeung; @stevens1946theory]\n\n명목척도(Nominal): 단순히 개체 특성 분류를 위해 숫자나 부호를 부여한 척도\n\n남자: M, 여자: F 혹은 월: 1, 화: 2, … 일:7, 혈액형: A형, B형, AB형, O형\n\n\n순서척도(Ordinal): 명목척도에 부가적으로 “순서(서열)” 정보가 추가된 척도\n\n군대계급: 사병, 장교, 장군 등\n\n\n구간척도(Interval): 순서척도에 부가적으로 “등간격” 정보가 추가된 척도\n\n구간척도는 절대 영점이 없음. 측정된 값들 간의 상대적인 차이만을 의미.\n섭씨 온도 척도에서 0도는 온도 부재를 의미하지 않음.\n덧셈과 뺄셈은 가능하지만, 곱셈과 나눗셈은 의미가 없음. 온도가 서울 10도, 제주 20도는 제주가 서울보다 온도가 2배 높다고 할 수 없음.\n온도(섭씨 20도, 화씨 68도), 시력, IQ 지수(90, 100, 110), 물가지수(기준 연도 대비 105, 110, 115) 등\n\n\n비율척도(Ratio): 구간척도에 “비율” 비교특성이 추가된 척도로 “비율 등간격” 특성이 포함됨.\n\n절대 영점은 해당 측정의 부재를 의미. 길이가 0cm는 길이가 없음을 의미. 무게 0kg는 무게가 없음을 의미.\n절대 ’0’을 가지고 사칙연산이 가능함. 10kg은 5kg의 2배.\n연령(20세, 30세, 40세), 월소득(2백만원, 3백만원, 4백만원`), TV 시청률 등.\n\n\n\n\n\n측정 분류\n\n변동계수(Coefficient of Variation, CV)는 표준편차와 평균값의 비율로 계산되는 통계값으로 다음과 같이 정의된다. 다음에서, \\(\\sigma\\)는 표준편차이고, $$ 평균이다.\n\\[CV = \\frac{\\sigma}{\\mu} \\times 100\\%\\]\nCV는 데이터의 변동성을 상대적으로 표현할 때 주로 사용된다. 특히, 두 개 이상의 변수 변동성을 비교할 때 편리하고, 변수 단위가 다르거나 평균값이 크게 다를 경우에도 CV를 사용하면 변동성을 공정하게 비교할 수 있는 장점이 있다.\n비율척도는 0이 절대적인 의미를 갖고, 모든 사칙연산이 가능한 척도 특징을 갖고 있다. CV가 0%이면, 변동성이 전혀 없다는 것을 의미하고, CV에서 0%는 절대적인 부재를 의미하며, 이것은 비율척도의 특징 중 하나다. 따라서, CV는 비율로 표현되므로, 어떤 변수의 CV가 다른 변수 CV의 2배라면, 변동성이 2배 크다는 것을 의미한다."
+  },
+  {
+    "objectID": "data_mgmt.html#data-type-basics",
+    "href": "data_mgmt.html#data-type-basics",
+    "title": "\n1  데이터 관리 방법론\n",
+    "section": "\n1.2 R 자료구조",
+    "text": "1.2 R 자료구조\nR에서 기본으로 사용하는 벡터 자료형은 원자 벡터(Atomic Vector) 와 리스트(List) 로 나눠진다. 원자 벡터에는 6가지 자료형이 있고, logical, integer, double, character, complex, raw, 총 6 개가 있으며 주로, 논리형, 정수형, 부동소수점형, 범주형, 4가지를 많이 사용한다. [@wickham2023r]\n\n\n자료형(Type)\n모드(Mode)\n저장모드(Storage Mode)\n\n\n\nlogical\nlogical\nlogical\n\n\ninteger\nnumeric\ninteger\n\n\ndouble\nnumeric\ndouble\n\n\ncomplex\ncomplex\ncomplex\n\n\ncharacter\ncharacter\ncharacter\n\n\nraw\nraw\nraw"
+  },
+  {
+    "objectID": "data_mgmt.html#측정척도와-자료형",
+    "href": "data_mgmt.html#측정척도와-자료형",
+    "title": "\n1  데이터 관리 방법론\n",
+    "section": "\n1.3 측정척도와 자료형",
+    "text": "1.3 측정척도와 자료형\n측정 척도는 크게 명목척도(Nominal), 순서척도(Ordinal), 구간척도(Interval), 그리고 비율척도(Ratio)로 분류할 수 있다.\n\n\n명목척도(Nominal)는 순서정보가 없는 범주로, logical, character나 factor 자료형으로 표현한다.\n\n순서척도(Ordinal)는 순서 정보가 추가된 명목척도로 ordered factor로 표현한다.\n\n구간척도(Interval)에서는 덧셈과 뺄셈은 가능하지만, 곱셈과 나눗셈은 의미가 없고 절대 영점도 없다. 주로 double 또는 integer 자료형으로 표현한다.\n\n비율척도(Ratio)에서는 모든 사칙연산이 가능하며, 절대 ’0’을 포함된다. 주로 double 또는 integer 자료형으로 표현한다.\n\n\n\n\n\n\n\n\n측정 척도\n설명\nR 자료형\n\n\n\n명목척도(Nominal)\n숫자나 문자로 개체 특성 분류\n\ncharacter, factor\n\n\n\n순서척도(Ordinal)\n순서 정보가 추가된 명목척도\nordered factor\n\n\n구간척도(Interval)\n덧셈, 뺄셈 가능 but 곱셈, 나눗셈 의미 없음. 절대 영점 없음\n\ndouble, integer\n\n\n\n비율척도(Ratio)\n모든 사칙연산 가능. 절대 ‘0’ 포함\n\ndouble, integer"
+  },
+  {
+    "objectID": "data_mgmt.html#extended-data-type",
+    "href": "data_mgmt.html#extended-data-type",
+    "title": "\n1  데이터 관리 방법론\n",
+    "section": "\n1.4 자료형 확장",
+    "text": "1.4 자료형 확장\n범주(요인), 텍스트, 날짜와 시간도 중요한 R에서 자주 사용되는 중요한 데이터 자료형으로 별도로 다뤄진다. 이를 위해서 stringr, lubridate, forcats 팩키지를 사용해서 데이터 정제작업은 물론 기계학습 예측모형 개발에 활용한다.\n\n\nR 자료형\n자료형\n예제\n\n\n\nlogical\n부울\n부도여부(Y/N), 남여\n\n\ninteger\n정수\n코로나19 감염자수\n\n\nfactor\n범주\n정당, 색상\n\n\nnumeric\n실수\n키, 몸무게, 주가, 환율\n\n\ncharacter\n텍스트\n주소, 이름, 책제목\n\n\nDate\n날짜\n생일, 투표일\n\n\n\n\n\n자료형 확장"
+  },
+  {
+    "objectID": "data_mgmt.html#벡터와-리스트",
+    "href": "data_mgmt.html#벡터와-리스트",
+    "title": "\n1  데이터 관리 방법론\n",
+    "section": "\n1.5 벡터와 리스트",
+    "text": "1.5 벡터와 리스트\n리스트는 재귀 벡터(recursive vector)라고도 불리는데 리스트는 다른 리스트를 포함할 수 있기 때문이다.\n따라서, 원자벡터는 동질적(homogeneous)이고, 리스트는 상대적으로 이질적(heterogeneous)이다.\n모든 벡터는 두가지 성질(Property)을 갖는데, 자료형과 길이로 이를 확인하는데 typeof()와 length() 함수를 사용해서 확인한다.\n\nlibrary(tidyverse)\n\na &lt;- list(a = 1:3,\n            b = \"a string\",\n            c = pi,\n            d = list(-1, -5) )\n  \ncat(\"자료형:\", typeof(a), \" 길이: \", length(a) ) \n\n자료형: list  길이:  4"
+  },
+  {
+    "objectID": "data_mgmt.html#is-na-null",
+    "href": "data_mgmt.html#is-na-null",
+    "title": "\n1  데이터 관리 방법론\n",
+    "section": "\n1.6 NULL과 NA 결측값",
+    "text": "1.6 NULL과 NA 결측값\n결측되었다는 없다는 것을 표시하는 방법이 두가지 필요하다. 하나는 벡터가 없다는 NULL이고, 벡터 내부에 값이 결측되었다는 NA 다. dataframe$variable &lt;- NULL 명령문을 사용하면 데이터프레임(dataframe)에 변수(variable)를 날려보내는 효과가 있다. 예를 들어 책장이 아예 없다는 의미(NULL)와 책장에 책이 없다(NA)는 다른 개념을 지칭하고 쓰임새가 다르다.\n\n\nNULL\n\n# NULL 자료형과 길이\ntypeof(NULL)\n\n[1] \"NULL\"\n\nlength(NULL)\n\n[1] 0\n\n\n\n\nNA\n\n# NA 자료형과 길이\ntypeof(NA)\n\n[1] \"logical\"\n\nlength(NA)\n\n[1] 1\n\n\n\n\nNA의 중요한 특징은 전염된다는 것이다. 즉, NA에 연산을 가하면 연산결과는 무조건 NA가 된다. NA가 7보다 큰지, 7을 더하고 빼고, 부울 연산을 하든 NA와 연산결과는 무조건 NA가 된다.\n\nNA + 7\n\n[1] NA\n\nNA / 7\n\n[1] NA\n\nNA &gt; 7\n\n[1] NA\n\n7 == NA\n\n[1] NA\n\nNA == NA\n\n[1] NA"
+  },
+  {
+    "objectID": "data_mgmt.html#data-type-factor",
+    "href": "data_mgmt.html#data-type-factor",
+    "title": "\n1  데이터 관리 방법론\n",
+    "section": "\n2.1 범주형, 순서형 자료형",
+    "text": "2.1 범주형, 순서형 자료형\n범주형, 순서형 자료형을 생성하는 경우 주의를 기울여야 한다. factor 함수를 사용해서 요인형 자료형을 생성하는데, 내부적으로 저장공간을 효율적으로 사용하고 속도를 빠르게 하는데 유용한다. 순서를 갖는 범주형의 경우 factor 함수 내부에 levels 인자를 넣어 정의하면 순서 정보가 유지된다.\n\n# 범주형\nanimals_vector &lt;- c(\"Elephant\", \"Giraffe\", \"Donkey\", \"Horse\")\nfactor_animals_vector &lt;- factor(animals_vector)\nfactor_animals_vector\n\n[1] Elephant Giraffe  Donkey   Horse   \nLevels: Donkey Elephant Giraffe Horse\n\n# 순위형\ntemperature_vector &lt;- c(\"High\", \"Low\", \"High\",\"Low\", \"Medium\")\nfactor_temperature_vector &lt;- factor(temperature_vector, order = TRUE, levels = c(\"Low\", \"Medium\", \"High\"))\nfactor_temperature_vector\n\n[1] High   Low    High   Low    Medium\nLevels: Low &lt; Medium &lt; High\n\n\n\n# \"M\", \"F\" 수준\nsurvey_vector &lt;- c(\"M\", \"F\", \"F\", \"M\", \"M\")\nfactor_survey_vector &lt;- factor(survey_vector)\nlevels(factor_survey_vector)\n\n[1] \"F\" \"M\"\n\n# \"Female\", \"Male\" 로 변환\nlevels(factor_survey_vector) &lt;- c(\"Female\", \"Male\")\nlevels(factor_survey_vector)\n\n[1] \"Female\" \"Male\"  \n\n\n\n# 문자형 벡터와 요인 벡터\nsurvey_vector &lt;- c(\"M\", \"F\", \"F\", \"M\", \"M\")\nfactor_survey_vector &lt;- factor(survey_vector)\n\n# 문자형 벡터 요약\nsummary(survey_vector)\n\n   Length     Class      Mode \n        5 character character \n\n# 요인 벡터 요약\nsummary(factor_survey_vector)\n\nF M \n2 3"
   }
 ]

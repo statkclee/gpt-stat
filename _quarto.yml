@@ -7,7 +7,7 @@ project:
     - "*.qmd"
     - "!*.Rmd"
 
-lang: ko
+lang: ko-KR
 date-format: "YYYY년 MM월 DD일"
 
 book:
@@ -16,6 +16,7 @@ book:
   date: last-modified
   chapters:
     - index.qmd
+    - data_mgmt.qmd
 
     - part: "사례연구"
       chapters:
@@ -26,14 +27,9 @@ book:
         - clt.qmd
     - references.qmd
 
-bibliography: references.bib
-
-editor: source
-
 filters:
    - lightbox
 lightbox: auto
-link-citations: true
 
 format:
   html:
@@ -46,12 +42,16 @@ format:
     cite-method: biblatex
     code-overflow: wrap
     code-link: true
-
     author-meta: "이광춘"
     callout-appearance: simple
 
   pdf:
     documentclass: scrreprt
+    cite-method: biblatex
+
+bibliography: references.bib
+csl: apa-single-spaced.csl
+link-citations: true
 
 
 knitr:
@@ -66,3 +66,4 @@ editor_options:
 execute:
   freeze: auto
 
+editor: source
