@@ -17,6 +17,7 @@ book:
   chapters:
     - index.qmd
     - data_mgmt.qmd
+    - database_mgmt.qmd
 
     - part: "사례연구"
       chapters:
