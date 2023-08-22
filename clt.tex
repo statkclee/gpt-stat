@@ -119,14 +119,12 @@
 \usepackage{sampl}
 %%%% fonts
 \setmainfont{STIX Two Text}
-\setsansfont{TeX Gyre Heros}
-\setkomainfont(KoPubBatang Light)(KoPubBatang Bold)(KoPubDotum Light)[Scale=MatchUppercase]
-\setkosansfont(KoPubDotum Light)(KoPubDotum Bold)(KoPubDotum Medium)[Scale=MatchUppercase]
 \newfontfamily\fallbackhanjafont{Noto Serif KR}[Scale=.9]
 \chapterstyle{demo}
 \AtBeginDocument{\frontmatter}
 \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\},baselinestretch=1.1}
 \makeindex
+\printindex
 \makeatletter
 \makeatother
 \makeatletter
@@ -171,14 +169,6 @@
 \@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
 \makeatother
 \makeatletter
-\@ifpackageloaded{tcolorbox}{}{\usepackage[skins,breakable]{tcolorbox}}
-\makeatother
-\makeatletter
-\@ifundefined{shadecolor}{\definecolor{shadecolor}{rgb}{.97, .97, .97}}
-\makeatother
-\makeatletter
-\makeatother
-\makeatletter
 \makeatother
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
@@ -204,8 +194,6 @@
 
 \begin{document}
 \maketitle
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[frame hidden, sharp corners, enhanced, boxrule=0pt, interior hidden, breakable, borderline west={3pt}{0pt}{shadecolor}]}{\end{tcolorbox}}\fi
-
 \renewcommand*\contentsname{목 차}
 {
 \hypersetup{linkcolor=}
@@ -244,12 +232,12 @@
 
 \begin{quote}
 \begin{quote}
-\textbf{50회 반복추출의 평균값:} 513.8, 551.9, 451.8, 436.7, 488.1,
-471.1, 509.9, 537.0, 497.3, 434.0, 466.2, 529.4, 444.8, 600.4, 405.8,
-520.7, 548.1, 425.2, 552.3, 573.6, 456.7, 527.0, 567.1, 539.6, 520.0,
-487.1, 462.0, 513.4, 605.8, 532.8, 451.7, 513.6, 481.4, 433.3, 388.3,
-493.3, 573.7, 571.1, 500.3, 561.5, 448.5, 488.4, 496.9, 477.9, 457.5,
-494.5, 479.4, 467.7, 453.1, 476.6
+\textbf{50회 반복추출의 평균값:} 512.3, 510.3, 413.5, 491.8, 498.9,
+516.3, 519.0, 542.2, 498.9, 491.1, 432.0, 554.3, 478.8, 613.9, 431.3,
+379.8, 457.6, 413.9, 471.2, 470.1, 424.9, 532.2, 515.5, 483.3, 415.2,
+463.2, 464.6, 468.7, 521.8, 487.6, 591.2, 468.2, 482.5, 492.5, 469.4,
+541.4, 516.9, 464.9, 504.4, 540.1, 490.1, 499.0, 442.5, 588.9, 497.0,
+593.5, 439.1, 516.4, 454.0, 479.8
 \end{quote}
 \end{quote}
 
@@ -271,7 +259,7 @@
 
 \(\bar{X_i}\)는 500을 중심으로 좌우대칭적으로 분포하고 있다.
 \sidepar{이 텍스트는 사이드노트를 시험하기 위한 것이다.}\index{자동조사}
-이들의 평균은 497.6으로 모평균 500과
+이들의 평균은 490.9으로 모평균 500과
 근사하다.\index{근사}\index{좌우대칭} 이들 중 이론적으로 산출한
 평균으로부터 약 2 표준편차만큼 떨어진
 구간(\(\mu \pm 2\frac{\sigma}{\sqrt{n}}\)) 안에 속하는 값, 즉

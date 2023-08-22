@@ -1,23 +1,68 @@
 project:
   type: book
+  output-dir: docs
+  resources:
+    - "data/*.mp3"
+  render:
+    - "*.qmd"
+    - "!*.Rmd"
+
+lang: ko
+date-format: "YYYY년 MM월 DD일"
 
 book:
-  title: "gpt-statistics"
-  author: "Norah Jones"
-  date: "2023. 8. 15."
+  title: "GPT 통계"
+  author: "이광춘"
+  date: last-modified
   chapters:
     - index.qmd
-    - intro.qmd
-    - summary.qmd
+
+    - part: "사례연구"
+      chapters:
+        - cs_prussia.qmd
+
+    - part: "출판"
+      chapters:
+        - clt.qmd
     - references.qmd
 
 bibliography: references.bib
 
+editor: source
+
+filters:
+   - lightbox
+lightbox: auto
+link-citations: true
+
 format:
   html:
-    theme: cosmo
+    theme:
+      - cosmo
+      - chatGPT4ds.scss
+    number-depth: 3
+    number-sections: true
+    colorlinks: true
+    cite-method: biblatex
+    code-overflow: wrap
+    code-link: true
+
+    author-meta: "이광춘"
+    callout-appearance: simple
+
   pdf:
     documentclass: scrreprt
 
 
+knitr:
+  opts_chunk:
+    message: false
+    warning: false
+    collapse: false
+editor_options:
+  chunk_output_type: console
+
+
+execute:
+  freeze: auto
 

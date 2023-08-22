@@ -1,5 +1,5 @@
 ---
-title: "중심극한정리(Central Limit Theorem)의 예시"
+title: "중심극한정리 예시"
 author: "한글 텍 사용자 그룹"
 date: "2023-08-10"
 bibliography: sample.bib
@@ -9,23 +9,22 @@ format:
     classoption: "chapter,a4paper,showtrims,openright,hidelinks"
     top-level-division: "chapter"
     pdfengine: "xelatex"
+    latex-makeindex: texindy
+    cite-method: biblatex
     include-in-header: 
       text: |
         \usepackage{sampl}
         %%%% fonts
         \setmainfont{STIX Two Text}
-        \setsansfont{TeX Gyre Heros}
-        \setkomainfont(KoPubBatang Light)(KoPubBatang Bold)(KoPubDotum Light)[Scale=MatchUppercase]
-        \setkosansfont(KoPubDotum Light)(KoPubDotum Bold)(KoPubDotum Medium)[Scale=MatchUppercase]
         \newfontfamily\fallbackhanjafont{Noto Serif KR}[Scale=.9]
         \chapterstyle{demo}
         \AtBeginDocument{\frontmatter}
         \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\},baselinestretch=1.1}
         \makeindex
+        \printindex
     keep-tex: true
     number-sections: true
     toc: true
-    cite-method: "biblatex"
 language:
   en:
     toc-title-document: "목 차"
