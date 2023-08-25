@@ -28,6 +28,7 @@ book:
     - part: "사례연구"
       chapters:
         - cs_prussia.qmd
+        - u_boats.qmd
 
     - part: "출판"
       chapters:
@@ -46,7 +47,6 @@ format:
     number-depth: 3
     number-sections: true
     colorlinks: true
-    cite-method: biblatex
     code-overflow: wrap
     code-link: true
     author-meta: "이광춘"
@@ -57,7 +57,7 @@ format:
     cite-method: biblatex
 
 bibliography: references.bib
-csl: apa-single-spaced.csl
+csl: biomed-central.csl
 link-citations: true
 
 

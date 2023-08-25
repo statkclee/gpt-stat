@@ -1,0 +1,157 @@
+
+# 유보드
+
+[@hendron2016germany]
+
+[uboat.net](https://uboat.net/)에서 제2차 세계대전 모든 독일 U보트, 지휘관, 공격한 연합군 함선을 포함한 작전, 기술 정보 등이 정리되어 있다. Kaden Hendron은 독일 유보드 데이터를 [kadenhendron/uboat-data](https://github.com/kadenhendron/uboat-data) 저장소에 포트폴리오와 함께 정리해뒀다.
+
+```{r}
+#| eval: false
+download.file(url = "https://raw.githubusercontent.com/kadenhendron/uboat-data/master/data/uboat-data.csv", 
+              destfile = "data/uboat-data.csv", model = "w")
+```
+
+## 유보트 데이터
+
+```{r}
+library(tidyverse)
+library(gt)
+
+uboat_raw <- read_csv("data/uboat-data.csv")
+
+uboat_raw |> 
+  count(fate_type, sort = TRUE, name = "대수") |> 
+  mutate(비율 = 대수 / sum(대수)) |> 
+  gt() |> 
+    cols_label(
+        fate_type = md("**유보트 운명**"),
+    ) |> 
+    grand_summary_rows(
+      columns = 대수,
+      fns =  list(label = "합계", id='totals', fn = "sum"),
+      fmt = ~ fmt_integer(.),
+      side = "bottom"
+    ) |> 
+    grand_summary_rows(
+      columns = 비율,
+      fns =  list(label = "합계", fn = "sum"),
+      fmt = ~ fmt_percent(., decimals = 0),
+      side = "bottom"
+    ) |> 
+    fmt_percent(columns = 비율, decimals = 1) |> 
+    gt_theme_hangul() |> 
+    cols_align("center") |> 
+    tab_header(
+      title = "유보트 유형별 운명",
+      subtitle = "자료출처: uboat.net"
+    )
+```
+
+
+```{r}
+uboat_raw |> 
+  # filter( fate_type == "Sunk") |> 
+  mutate(fate_date = lubridate::dmy(fate),
+         fate_date = if_else(is.na(fate_date), lubridate::mdy(fate), fate_date)) |> 
+  group_by(fate_date, fate_type) |> 
+  summarise(uboat_cnt = n())  |> 
+  ggplot(aes(x = fate_date, y = uboat_cnt, color = fate_type)) +
+    geom_jitter() +
+    scale_y_sqrt()
+```
+
+
+```{r}
+uboat_raw |> 
+  arrange(desc(ships_sunk)) |> 
+  select(name, type, fate_type, ships_sunk)
+```
+
+```{r}
+uboat_raw
+```
+
+## 목표 데이터
+
+
+```{r}
+#| eval: false
+download.file(url = "https://raw.githubusercontent.com/kadenhendron/uboat-data/master/data/uboat-target-data.csv", 
+              destfile = "data/uboat-target-data.csv", model = "w")
+```
+
+
+```{r}
+library(tidyverse)
+library(gt)
+
+target_raw <- read_csv("data/uboat-target-data.csv")
+
+target_raw |> 
+  count(nationality, sort = TRUE)
+
+target_tbl <- target_raw |> 
+  mutate(attack_date = lubridate::mdy(attack_date)) |> 
+  mutate(yearmon = floor_date(attack_date, "month")) 
+
+target_tbl |> 
+  group_by(yearmon) |> 
+  summarise(tonnage = sum(tonnage)) |>  
+  ggplot(aes(x = yearmon, y = tonnage)) +
+    geom_line() +
+    theme_korean() +
+    labs(title = "월별 유보트 격침 톤수")
+```
+
+```{r}
+target_tbl |> 
+  mutate(국적 = case_when(str_detect(nationality, "British")  ~ "영국",
+                          str_detect(nationality, "American")  ~ "미국",
+                          TRUE ~ "그외")) |> 
+  group_by(국적, yearmon) |> 
+  summarise(침몰선박수 = n()) |> 
+  ggplot(aes(x = yearmon, y = 침몰선박수, fill = 국적)) +
+    geom_col() +
+    theme_korean() +
+    labs(title = "월별 유보트 격침 톤수")  
+```
+
+
+
+```{r}
+library(giscoR)
+library(sf)
+
+world <- gisco_get_countries()
+
+target_sf <- target_tbl |> 
+  filter(loss_type  == "Sunk")  |> 
+  select(name, attack_lat, attack_lo) |> 
+  drop_na() |> 
+  st_as_sf(coords = c("attack_lo", "attack_lat"), crs = sf::st_crs(world))
+
+ggplot() +
+  geom_sf(data = world) +
+  geom_sf(data = target_sf, size = 0.5)
+
+```
+
+
+```{r}
+library(giscoR)
+library(sf)
+
+world <- gisco_get_countries()
+
+uboat_sf <- uboat_raw |> 
+  filter(fate_type  == "Sunk")  |> 
+  select(id, fat_lon, fate_lat) |> 
+  mutate(across(fat_lon:fate_lat, as.numeric)) |> 
+  drop_na() |> 
+  st_as_sf(coords = c("fat_lon", "fate_lat"), crs = sf::st_crs(world))
+
+ggplot() +
+  geom_sf(data = world) +
+  geom_sf(data = uboat_sf, size = 0.5)
+
+```
