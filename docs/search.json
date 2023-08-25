@@ -215,5 +215,194 @@
     "title": "\n2  데이터베이스\n",
     "section": "\n2.5 헬로 월드",
     "text": "2.5 헬로 월드\n먼저, sqlite3 chinooks 데이터베이스를 다운로드 한다. 7\n\ndownload.file(url = \"https://raw.githubusercontent.com/lerocha/chinook-database/master/ChinookDatabase/DataSources/Chinook_Sqlite.sql\", destfile = \"data/Chinook_Sqlite.sql\")\n\n쉘에서 아래 명령어로 sqlite3 데이터베이스를 생성시킨다.\n$ sqlite3 chinook.db &lt; Chinook_Sqlite.sql\nDBI 연결시켜 chinook.db를 R에서 작업할 수 있도록 준비시킨다.\n\nlibrary(tidyverse)\nlibrary(DBI)\nlibrary(RSQLite)\n\nchinook &lt;- dbConnect(RSQLite::SQLite(), dbname = \"data/chinook.db\")\n\nR 마크다운에서 제대로 되는지 테스트 한다.\n\nSELECT * FROM Artist LIMIT 10;\n\n\nDisplaying records 1 - 10\n\nArtistId\nName\n\n\n\n1\nAC/DC\n\n\n2\nAccept\n\n\n3\nAerosmith\n\n\n4\nAlanis Morissette\n\n\n5\nAlice In Chains\n\n\n6\nAntônio Carlos Jobim\n\n\n7\nApocalyptica\n\n\n8\nAudioslave\n\n\n9\nBackBeat\n\n\n10\nBilly Cobham"
+  },
+  {
+    "objectID": "fonts.html#font-coding",
+    "href": "fonts.html#font-coding",
+    "title": "\n4  글꼴\n",
+    "section": "\n4.1 R 코딩 글꼴",
+    "text": "4.1 R 코딩 글꼴\n문서를 위해 작성하는데 사용되는 글꼴과 R 코딩을 위해 사용되는 글꼴은 차이가 난다. 왜냐하면 R 코딩에 사용되는 글꼴은 가독성이 좋아야하고 디버깅에 용이해야 된다. 영어는 consolas 글꼴을 많이 사용하는데 무료가 아니다. 그래서 consolas에서 영감을 받은 SIL 오픈 폰트 라이선스를 따르는 Inconsolata가 R 코딩에 많이 사용되고 있다. 하지만, R코드를 작성할 때 주석을 한글로 달거나 R마크다운 작업을 할 경우 유사한 기능을 하는 한글 글꼴이 필요하다.\n\n네이버 나눔고딕 코딩글꼴\nD2 Coding 글꼴\n\n“네이버 나눔고딕 코딩글꼴”과 “D2 Coding 글꼴”을 설치하고 나서 RStudio IDE에서 “Tools” → “Global Options…”를 클릭하면 “Options”창에서 Appearance에서 Editor font:에서 설치한 코딩전용 글꼴을 선택하고 Editor theme:도 지정한다.\n\n\nD2 코딩폰트 설치"
+  },
+  {
+    "objectID": "fonts.html#r-viz-font",
+    "href": "fonts.html#r-viz-font",
+    "title": "\n4  글꼴\n",
+    "section": "\n4.2 ggplot 시각화 글꼴",
+    "text": "4.2 ggplot 시각화 글꼴\nextrafont 팩키지에서 font_import() 함수로 운영체제(윈도우/리눅스)에 설치된 글꼴을 R로 가져온다. 그리고 나서 loadfonts() 함수를 사용해서 설치된 글꼴을 사용하는 작업흐름을 따르게 된다.\n\nlibrary(extrafont)\nfont_import(pattern = \"D2\")\n\nImporting fonts may take a few minutes, depending on the number of fonts and the speed of the system.\nContinue? [y/n] y\nScanning ttf files in C:\\Windows\\Fonts ...\nExtracting .afm files from .ttf files...\nC:\\Windows\\Fonts\\D2Coding-Ver1.3.2-20180524.ttf =&gt; C:/Users/tidyverse_user/Documents/R/win-library/3.5/extrafontdb/metrics/D2Coding-Ver1.3.2-20180524\nC:\\Windows\\Fonts\\D2CodingBold-Ver1.3.2-20180524.ttf =&gt; C:/Users/tidyverse_user/Documents/R/win-library/3.5/extrafontdb/metrics/D2CodingBold-Ver1.3.2-20180524\nC:\\Windows\\Fonts\\MOD20.TTF =&gt; C:/Users/tidyverse_user/Documents/R/win-library/3.5/extrafontdb/metrics/MOD20\nFound FontName for 3 fonts.\nScanning afm files in C:/Users/tidyverse_user/Documents/R/win-library/3.5/extrafontdb/metrics\nWriting font table in C:/Users/tidyverse_user/Documents/R/win-library/3.5/extrafontdb/fontmap/fonttable.csv\nWriting Fontmap to C:/Users/tidyverse_user/Documents/R/win-library/3.5/extrafontdb/fontmap/Fontmap...\n\nfont_import(pattern = \"Nanum\")\n\n\n4.2.1 ggplot 한글 글꼴 사례\nextrafont 패키지 loadfonts() 함수를 사용해서 ggplot에서 적용시킬 수 있는 글꼴을 불러냈다. R 내장 데이터셋 iris를 사용하여 나눔글꼴 “Nanum Pen Script”을 기본 글꼴로 적용시켰다.\n\nlibrary(tidyverse)\nlibrary(extrafont)\nloadfonts() # 로컬 PC 에서 설치된 글꼴을 불러냄!!!\n\niris %&gt;% \n  ggplot(aes(x=Sepal.Length, y=Petal.Length, color=Species)) +\n    geom_point()+\n    labs(title=\"붓꽃 데이터 한글 글꼴 적용\", color=\"붓꽃 종류\") +\n    theme_minimal(base_family = \"Nanum Pen Script\") +\n    theme(legend.position = \"top\")"
+  },
+  {
+    "objectID": "fonts.html#font-showtext",
+    "href": "fonts.html#font-showtext",
+    "title": "\n4  글꼴\n",
+    "section": "\n4.3 showtext 패키지 1\n",
+    "text": "4.3 showtext 패키지 1\n\nextrafont 패키지를 통해 한자를 포함한 한글을 처리할 수 있었으나, extrafont는 트루타입폰트(.ttf)를 PDF 그래픽 장치에 초점을 맞춰 개발이 되었다. 따라서, 데이터과학 최종산출물이 PDF 형태 책이 아닌 경우 여러가지 면에서 다양한 한글 글꼴을 표현하는데 있어 한계가 있다.\n새로 개발된 showtext 팩키지는 Ghostscript같은 외부 소프트웨어를 활용하지 않고도 다양한 (그래픽) 글꼴을 지원한다. showtext로 R 그래프를 생성할 때, 다양한 글꼴(TrueType, OpenType, Type 1, web fonts 등)을 지원한다.\n과거 PDF와 같은 책형태로 정보를 공유하고 전달하는 방식이 주류를 이뤘다면 인터넷 등장 이후 웹으로 정보 생성과 소비가 주류로 떠오르게 되면서 글꼴에도 변화가 생겼다. 가까운 미래에는 웹을 우선시하는 글꼴이 대세를 이룰 것으로 보인다.\n\n\nshowtext 글꼴\n\n사용자가 그래프에 텍스트를 넣기 위해 R 함수에서 text()를 호출할 때 showtext가 활성화 되어 있으면 showtext 팩키지 text() 함수를 호출해서 그래픽 혹은 이미지 파일에 텍스트를 표현하고 그렇지 않는 경우는 디폴트 장치함수 text() 함수를 호출하게 되어 있다.\n내부적으로 상세 작동 로직은 글꼴 위치를 파악해서 글리프(glyph) 정보를 추출하고 비트맵 형식, 벡터그래픽 형식에 따라서 비트맵일 경우 raster() 장치함수를 호출하고, 벡터그래픽인 경우 path() 장치함수를 호출해서 기능을 수행한다.\n\n4.3.1 R 설치 글꼴 확인\nextrafont 팩키지 loadfonts() 함수를 통해 .ttf 파일 정보를 확인한다. 현재 구글 글끌 페이지에서 많은 한글 글꼴을 지원하지 않고 있다. 구글에서 전세계 글꼴을 지원하다보 동아시아 3국 대상으로 지원되는 글꼴은 적은 것으로 보인다.\n\n# 0. 환경설정 --------------------------------------------------------------------------\nlibrary(tidyverse)\nlibrary(showtext) # 글꼴, install.packages(\"showtext\")\nlibrary(extrafont)\nloadfonts()\n\n\n4.3.2 ggplot 글꼴 적용\n한글 글꼴을 바로 적용하기에 앞서 showtext 패키지 포함된 영문글꼴 적용 사례를 먼저 돌려보자. ggplot 그래픽에 적용되는 showtext 활용 기본 작업흐름은 다음과 같다.\n\n글꼴을 적재한다.\n그래픽 장치를 연다\n\nshowtext를 통해 텍스트를 표시한다고 지정한다.\n그래프를 그린다.\n장치를 닫는다.\n\n\nlibrary(tidyverse)\nlibrary(showtext)\n\n# ggplot 그래픽 ----------------------------\n\ndat &lt;- data.frame(cond = factor(rep(c(\"A\",\"B\"), each=200)), \n                  rating = c(rnorm(200),rnorm(200, mean=.8)))\n\nfont_add_google(\"Schoolbell\", \"bell\") # 글꼴 적재\n\nshowtext.begin() # 그래픽 장치 열기\n\nggplot(dat, aes(x=rating)) + \n  geom_histogram(binwidth=.5)+ \n　annotate(\"text\", 1, 2.1, family = \"bell\", size = 15, color=\"red\", label = \"histogram\")\n\n\n\n\n\n\nshowtext.end() # 그래픽 장치 닫기"
+  },
+  {
+    "objectID": "fonts.html#font-showtext-korean-example-ttf",
+    "href": "fonts.html#font-showtext-korean-example-ttf",
+    "title": "\n4  글꼴\n",
+    "section": "\n4.4 로컬 글꼴 적용",
+    "text": "4.4 로컬 글꼴 적용\n로컬 컴퓨터에 저장된 .ttf 파일을 사용자 지정해서 가져온 후 이를 ggplot에 반영하여 한글을 R 그래프에 적용하는 것도 가능하다. showtext는 extrafont 보다 나중에 개발되어 extrafont가 로컬 컴퓨터에 설치된 글꼴을 ggplot에 구현되는데 전력을 다했다면 showtext는 이를 발판으로 나중에 개발되어 구글 폰트와 같은 인터넷 글꼴과 최근 웹출판에 대한 개념도 넣어 개발된 것이 차이점이다.\n\n# ３. 한글 그래픽 --------------------------------------------------------------------------\n## 나눔펜　스크립트\nfont_add(\"NanumBarunGothic\", \"NanumBarunGothic.ttf\")\n\nshowtext.auto()\n\np &lt;- ggplot(NULL, aes(x = 1, y = 1)) + ylim(0.8, 1.2) +\n  theme(axis.title = element_blank(), axis.ticks = element_blank(),\n        axis.text = element_blank()) +\n  annotate(\"text\", 1, 1.1, family = \"NanumBarunGothic\", size = 15, color=\"red\",\n           label = \"한글 사랑\") +\n  annotate(\"text\", 1, 0.9, label = 'korean for \"Hello, world!\"',\n           family = \"NanumBarunGothic\", size = 12)\n\nprint(p)"
+  },
+  {
+    "objectID": "document.html#papers-ropensci",
+    "href": "document.html#papers-ropensci",
+    "title": "\n3  문서\n",
+    "section": "\n3.1 논문과 ropensci 진행경과",
+    "text": "3.1 논문과 ropensci 진행경과\n[@marwick2018packaging]\n\n\n재현가능한 과학연구를 위한 저작 방법\n\n\nropensci, “Community Call: Reproducible Research with R”"
+  },
+  {
+    "objectID": "document.html#compendium-intro",
+    "href": "document.html#compendium-intro",
+    "title": "\n3  문서\n",
+    "section": "\n3.2 R 팩키지와 개요서",
+    "text": "3.2 R 팩키지와 개요서\nR 프로젝트, R 팩키지, 개요서(compendium)가 서로 동일한 목표를 가지고 있지만, 다소 차이가 있는 것도 사실이다. 데이터 사이언스를 하면서 코드, 데이터, 결과물을 하나의 개요서(compendium) 아래 묶어 이를 통해 재현가능한 과학기술 발전을 도모하는 것이 무엇보다 필요하다. 3 4\n\n좋은 데이터 사이언스 프로젝트 구성\n\n모든 파일은 동일한 디렉토리 아래 정돈되어 있음\n원본 데이터(raw data)는 별도 폴더에 잘 저장되어 있어야 함.\n정제된 데이터는 R 스크립트를 통해서 만들어져야 함.\n함수는 분석 스크립트와 독립되어 저장되어야 함.\n함수는 문서화가 잘 되어야 하면 (단위) 테스트도 되어 ㅎ함.\n산출물은 코드와 격리되어야 하며 일회용으로 한번 사용하고 버림.\n\nMakefile은 적절한 순서로 분석을 실행해야 함.\nREADME 파일은 프로젝트 개요를 담고 있어야 함.\n\ngit을 사용해서 R 코드와 Rmd 문서 파일은 버전 제어를 해야 함.\n\n\n\nproject/\n|-+ data-raw/   # 원본 데이터\n|-+ data/       # (R 스크립트로부터 생성된) 정제된 데이터\n|-+ R/          # 함수(Functions)\n|-+ man/        # (Roxygen으로 생성된) 함수 문서(Function documentation)\n|-+ tests/      # 테스트 (functions, Rmd)\n|-+ vignettes/  # (Rmd로 작성된) 분석결과, 원고, 보고서 등\n|\n|- Makefile    # 자동화 시키는 마스터 스크립트\n|- DESCRIPTION # 메타데이터와 의존성\n|- README      # 프로젝트 개요서\n상기와 같이 개요서를 R 팩키지를 통해 구현하게 되면 어떤 점이 좋은지 살펴보자.\n\n재현가능성: Reproducibility\n일관되고, 표준적이며, 물흐르는 듯한 프로젝트 구조: Consistent, standard, streamlined organisation\n모듈화, 문서화, 테스트 주도 철학을 증진: Promotes modular, well-documented and tested code\n공유하기 쉬움: Easy to share (zip, GitHub repo)\n설치와 실행이 쉬움: Easy to install & run (Dependencies)\nR 팩키지 제작 기계: Use R package development machinery:\nR CMD CHECK\n지속 개발/지속 배포: Continuous integration (Travis-CI)\n\ngoodpractice로 자동화된 코드리뷰: Automatic code review with goodpractice\n\npkgdown으로 프로젝트 웹사이트 제작: Easily create project websites with pkgdown"
+  },
+  {
+    "objectID": "document.html#start-small",
+    "href": "document.html#start-small",
+    "title": "\n3  문서\n",
+    "section": "\n3.3 시작이 반이다",
+    "text": "3.3 시작이 반이다\n\n시작이 반이다 - start small\n\nproject\n|- DESCRIPTION\n|- README.md  \n|- Metadata.txt\n|\n|- data/                \n|   +- 2014ParasiteSurveyJustBrood.csv\n|   +- CedarBPLifeTable2014.csv\n|   +- NorthBPLifeTable2013.txt\n|   +- NorthBPLifeTable2014.csv|\n|- analysis/\n|   +- CodeforBPpaper.R"
+  },
+  {
+    "objectID": "document.html#pkg-development",
+    "href": "document.html#pkg-development",
+    "title": "\n3  문서\n",
+    "section": "\n3.4 팩키지 개발",
+    "text": "3.4 팩키지 개발\n\n팩키지 개발\n\n\nproject\n|- DESCRIPTION\n|- NAMESPACE\n|- README.md\n|- LakeTrophicModelling.Rproj\n|\n|- R/\n|   +- LakeTrophicModelling-package.r\n|   +- class_prob_rf.R\n|   +- condAccuracy.R\n|   +- crossval_rf.R\n|   +- density_plot.R\n|   +- ecdf_ks_ci.R\n|   +- ecor_map.R\n|   +- getCyanoAbund.R\n|   +- getLakeIDs.R\n|   +- importancePlot.R\n|\n|- man/\n|   +- class_prob_rf.Rd\n|   +- condAccuracy.Rd\n|   +- crossval_rf.Rd\n|   +- density_plot.Rd\n|   +- ecdf_ks_ci.Rd\n|   +- ecor_map.Rd\n|   +- getCyanoAbund.Rd\n|   +- getLakeIDs.Rd\n|   +- importancePlot.Rd\n|\n|- data/                \n|   +- LakeTrophicModelling.rda\n|\n|- vignettes/\n|\n|- inst/\n|   +- doc/\n|      +- manuscript.pdf\n|   +- extdata/\n|      +- ltmData.csv\n|      +- data_def.csv"
+  },
+  {
+    "objectID": "document.html#cicd-docker",
+    "href": "document.html#cicd-docker",
+    "title": "\n3  문서\n",
+    "section": "\n3.5 CI/CD와 도커",
+    "text": "3.5 CI/CD와 도커\nDockerfile 파일을 추가하여 환경도 재현가능하게 만들 수 있고, .travis.yml을 추가하여 CI/CD 환경도 구축할 수 있다. tests/를 추가하여 테스트 주도 개발(test-driven development, TDD)를 시도할 수 있고, 이를 통해 수작업 검증을 자동화하여 생산성과 품질을 대폭 향상시킬 수도 있다.\nproject\n|- DESCRIPTION          # project metadata and dependencies \n|- README.md            # top-level description of content and guide to users\n|- NAMESPACE            # exports R functions in the package for repeated use\n|- LICENSE              # specify the conditions of use and reuse of the code, data & text\n|- .travis.yml          # continuous integration service hook for auto-testing at each commit\n|- Dockerfile           # makes a custom isolated computational environment for the project\n|\n|- data/                # raw data, not changed once created\n|  +- my_data.csv       # data files in open formats such as TXT, CSV, TSV, etc.\n|\n|- analysis/            # any programmatic code\n|  +- my_report.Rmd     # R markdown file with narrative text interwoven with code chunks \n|  +- makefile          # builds a PDF/HTML/DOCX file from the Rmd, code, and data files\n|  +- scripts/          # code files (R, shell, etc.) used for data cleaning, analysis and visualisation \n|\n|- R/                     \n|  +- my_functions.R    # custom R functions that are used more than once throughout the project\n|\n|- man/\n|  +- my_functions.Rd   # documentation for the R functions (auto-generated when using devtools)\n|\n|- tests/\n|  +- testthat.R        # unit tests of R functions to ensure they perform as expected"
+  },
+  {
+    "objectID": "document.html#case-by-case-template",
+    "href": "document.html#case-by-case-template",
+    "title": "\n3  문서\n",
+    "section": "\n3.6 각 사례별 템플릿",
+    "text": "3.6 각 사례별 템플릿\n\nJeff Hollister’s manuscriptPackage\nCarl Boettiger’s template\nFrancisco Rodriguez-Sanchez’s template\n\nBen Marwick’s researchcompendium\n\nrrtools: Tools for Writing Reproducible Research in R"
+  },
+  {
+    "objectID": "document_auto.html#보고서-작성-작업흐름",
+    "href": "document_auto.html#보고서-작성-작업흐름",
+    "title": "\n4  보고서 자동화\n",
+    "section": "\n4.1 보고서 작성 작업흐름",
+    "text": "4.1 보고서 작성 작업흐름\n일반적인 보고서 작성을 위한 작업흐름과 필요한 요소는 다음과 같다. 데이터 기반 보고서를 작성할 때 데이터와 데이터를 처리하는데 필요한 R/SAS/SPSS/파이썬 스크립트, 마크다운으로 작성한 문서가 포함된다. 즉, 데이터를 데이터베이스, 웹, 파일형태로 가져오면 R 스크립트를 통해 전처리를 하고 필요한 통계량을 뽑아내고 시각적으로 히스토그램, 막대그래프, 원그래프, 시계열 추세 선 그래프 등이 포함된다. 그리고, 데이터에서 나온 다양한 통계량 및 시각적 산출물에 대한 견해와 함께 최종 보고서 작성자의 의견을 덧붙여 마무리하고 보고서 작성자, 참고문헌, 목차, 각주 등을 붙여 보고서를 완성한다.\nGUI가 아닌 CLI 방식으로 데이터를 분석한 후에 이를 .R 파일로 저장하고 나서 이를 .Rmd 파일(코드와 문서)로 함께 작성한 뒤에 이를 기계에 던져 원하는 형태의 문서 .pdf, .html, .docx 파일을 뽑아내서 웹, PC 배포문서, 저작 가능한 문서 형태로 배포한다.\n\n\n일별 통계보고서 자동화"
+  },
+  {
+    "objectID": "document_auto.html#다수-보고서-자동-생성",
+    "href": "document_auto.html#다수-보고서-자동-생성",
+    "title": "\n4  보고서 자동화\n",
+    "section": "\n4.2 다수 보고서 자동 생성",
+    "text": "4.2 다수 보고서 자동 생성\n하루일과는 아침에 일어나서 밥을 먹고, 학교나 회사에 출근하고, 점심먹고, 오후에 놀거나 추가 작업을 하고, 퇴근을 하고 저녁을 먹고, 쉬고 잠을 자는 과정이 일반적인 일상이다. 이런 과정이 매일 매일 반복된다. 마찬가지로 보고서도 이런 일상적인 과정을 담아내야 한다. 즉, 일별로 생성되는 데이터를 동일한 형태의 보고서로 작성하게 된다. 이를 위해 상기 “일반적인 보고서 작성 흐름”을 복사해서 붙여넣기 신공을 발휘하기 보다는 데이터를 바꿔넣고 해당 데이터를 매개변수(parameter)로 던져서 일별 보고서를 자동화시킨다.\n따라서, 일자 정보를 .Rmd 파일에 전달하는 과정을 거치는 것이 필요하고, 통계보고서를 자동생성시키는 과정을 별도 스크립트로 만들어서 실행시킨다.\n\n\n주간/월간 통계보고서 자동화"
+  },
+  {
+    "objectID": "document_auto.html#보고서-생성-자동화-r",
+    "href": "document_auto.html#보고서-생성-자동화-r",
+    "title": "\n4  보고서 자동화\n",
+    "section": "\n4.3 보고서 생성 자동화 (R)",
+    "text": "4.3 보고서 생성 자동화 (R)\n보고서 생성 자동화 프로세스를 구현하는 방법은 다양하다. RStudio 통합개발도구를 바탕으로 운영체제 쉘로 내려가지 않고 R 스크립트 내에서 작업하는 업무 구현사례는 다음과 같다.\n즉, 다양한 보고서 템프릿을 생성시켜놓는다. 일별, 주별, 월별, 년도별 보고서를 템플릿형태로 작성하고 나서 내용을 채워 넣는다.\n보고서 내용보다 변하는 것이 데이터가 된다. 2017-01-01 데이터부터 일별로 데이터가 쭉 생성된다. 이를 일자별로, 주별, 월별, 연도별로 인식한 후 이에 대한 적절한 데이터 분석결과를 담아내는 분석 R 스크립트를 활용한다.\n데이터, 보고서 콘텐츠, 데이터분석 스크립트가 모두 준비되면 이를 리포트보고서(.Rmd)가 담고 있어야 한다. 마지막으로 make_report.r을 실행하여 보고서를 자동생성 시킨다.\n\n\n주간/월간 통계보고서 자동화 구현사례\n\n\n4.3.1 보고서 Make 파일\n일자별로 보고서를 생성시키기 위해서 보고서에 일자를 .Rmd 파일에 넘겨야 한다. 우선 일자 정보를 보고서에 전달할 수 있는 형태로 만들기 위해서 다음과정을 거친다.\n\n리포트 생성일자를 자동 생성\n월, 일을 뽑아내고 0을 덧붙여 일자를 두자리로 생성\n해당 리포트는 daily_cars_report.Rmd 파일에 params 리스트로 월(dmonth)과 일(dday)을 넘김.\n출력결과는 html_document 형식으로 지정\n한국어가 깨지는 문제가 있어 인코딩은 UTF-8으로 필히 지정\n1월1일부터 5월18일까지 일별로 돌리게 되면 오류가 생겨는 경우 이를 무시하고 계속 보고서 생성시키도록 try, silent=TRUE를 지정하여 넘김.\n\n\nlibrary(stringr)\nlibrary(lubridate)\n\nreporting_date &lt;- seq(as.Date(\"2017-01-01\"), as.Date(\"2017-05-18\"), by = \"day\")\n\n\nfor(i in reporting_date) {\n    ## 날짜뽑아내기\n    xmonth &lt;- month(as.Date(i, origin=\"1970-01-01\"))\n    xday &lt;- day(as.Date(i, origin=\"1970-01-01\"))\n    dmonth &lt;- stringr::str_pad(xmonth, 2, pad=\"0\")\n    dday &lt;- stringr::str_pad(xday, 2, pad=\"0\")\n    ## 보고서 생성\n    try(\n        rmarkdown::render('./report/daily_cars_report.Rmd',\n                      params = list(\n                          dmonth = dmonth,\n                          dday   = dday),\n                      output_format=\"html_document\",\n                      output_file =paste0 (\"daily_cars_2017\", dmonth, dday, \".html\"),\n                      encoding = 'UTF-8'\n        ),\n    silent = TRUE)\n}\n\n\n4.3.2 매개변수를 받는 보고서\nmake_report.r 파일에서 정의된 매개변수(parameter)를 받는 .Rmd 파일은 다음과 같은 모양이 된다. 즉, YAML 헤더에 params에 dmonth, dday를 정의하고 이를 params$dmonth, params$dday로 문서의 변수로 적용한다. 이를 통해 일자별로 생성되는 데이터를 자동으로 분석하여 보고서를 자동생성시키게 된다.\n\n---\ntitle: 보고서 예제\ndate: '`r strftime(Sys.time(), format = \"%B %d, %Y\")`'\noutput:\n  html_document:\n    toc: yes\n    toc_depth: 2\nparams:\n    dmonth:\n        value: x\n    dday:\n        value: x\n---\n\n#```{r, include = F}\nknitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)\nlibrary(tidyverse)\n\noptions(scipen = 999, stringsAsFactors = FALSE)\n#```\n\n### 3.3. 보고서 시작합니다.\n\n#```{r, sample-report}\nprint(paste(params$directory, params$file, sep = '/'))\ngetwd()\ndataset &lt;- read.csv(paste0(\"../data/cars_2017\", params$dmonth, params$dday, \".rds\"))\nglimpse(dataset)\n#```"
+  },
+  {
+    "objectID": "document_auto.html#예측모형-보고서",
+    "href": "document_auto.html#예측모형-보고서",
+    "title": "\n4  보고서 자동화\n",
+    "section": "\n4.4 예측모형 보고서",
+    "text": "4.4 예측모형 보고서\nR 스크립트로 데이터 분석과정을 프로그래밍하게 되면, 이를 다양한 R 팩키지와 조합하여 예측모형을 담은 보고서도 손쉽게 작성할 수 있다.\n\n\n예측모형 보고서 자동화\n\n\n데이터\n\n원본작업데이터: 로그파일, 엑셀파일, RDBMS 등\nR 바이너리 파일: 아스키 형태 데이터(.csv 등)로 저장할 경우 메타 정보가 증발하여 R 작업흐름에 태워서 사용할 경우 .rds와 같은 R 바이너리 파일이 유용하다.\n보고서 HTML 파일: 최종 산출물 보고서\n\n\nR 스크립트\n\n원본 데이터를 정제하는 R 스크립트\n보고서 혹은 예측모형을 산출하는 R 스크립트\n\n\n\n\n4.4.1 원본데이터 정제\n윈도우 터미널을 열고 RScript 명령어를 실행한다.\n\nR 정제 파일: cleansing_code.R\n\n데이터 디렉토리: ../data\n\n채팅 로그 파일: abc.txt\n\n처리결과 저장 디렉토리: ../data_processed\n\n처리결과 파일명: abc_clean.rds\n\n\n\nC:\\xwMOOC_project\\code&gt; RScript cleansing_code.R \"../data\" \"abc.txt\" \"../data_processed\"\n\n[1] \"../data_processed\\\\abc_clean.rds\"\n\n\n4.4.2 보고서 생성\n정제된 데이터(.rds)를 통계분석하여 예측모형이 포함된 보고서를 생성한다.\n\nR make 파일: make_report.R\n\n보고서 Rmd 파일: report_automation.Rmd 은 make_report.R 파일 내 지정됨\n정제된 데이터 디렉토리: data_processed\n\n정제된 데이터 파일: abc_clean.rds\n\n\n\nC:\\xwMOOC_project\\report&gt; RScript make_report.R \"data_processed\" \"abc_clean.rds\"\n\nprocessing file: report_automation.Rmd\noutput file: report_automation.knit.md\n\nOutput created: report_abc_clean_file.html"
+  },
+  {
+    "objectID": "model_value.html",
+    "href": "model_value.html",
+    "title": "6  예측모형 가치",
+    "section": "",
+    "text": "7 예측모형 사업활용 3 4 5\n예측모형을 사업에 활용하기 위해서 AUC, 민감도, 특이도와 같은 예측모형 성능파악 지표 대신에 다음과 같은 그래프와 측도를 많이 사용한다."
+  },
+  {
+    "objectID": "model_value.html#predictive-model-x",
+    "href": "model_value.html#predictive-model-x",
+    "title": "6  예측모형 가치",
+    "section": "\n6.1 데이터 준비",
+    "text": "6.1 데이터 준비\n먼저 UCI 웹사이트에서 데이터를 다운로드 받아 압축을 풀고, 예측모형에 사용될 수 있도록 데이터를 가공한다. 약 11.3% 고객이 은행상품에 가입한 것이 파악된다.\n\n# 0. 환경설정 -----\nlibrary(tidyverse)\nlibrary(caret)\nlibrary(modelplotr) # devtools::install_github(\"modelplot/modelplotr\")\n\n# 1. 데이터 다운로드 -----\ndownload.file(url = \"https://archive.ics.uci.edu/ml/machine-learning-databases/00222/bank-additional.zip\", destfile = \"data//bank-additional.zip\", mode='wb')\n\n# 1.1. 압축풀기 -----\nunzip(\"data/bank-additional.zip\", exdir=\"./data\")\n\n# 1.2. 불러오기 -----\nbank_dat &lt;- read_delim(\"data/bank-additional/bank-additional-full.csv\", delim=\";\",\n                      col_types = cols(\n                              .default = col_character(),\n                              age = col_integer(),\n                              duration = col_integer(),\n                              campaign = col_integer(),\n                              pdays = col_integer(),\n                              previous = col_integer(),\n                              emp.var.rate = col_double(),\n                              cons.price.idx = col_double(),\n                              cons.conf.idx = col_double(),\n                              euribor3m = col_double(),\n                              nr.employed = col_double()))\n\n\nbank_df &lt;- bank_dat %&gt;% \n    select_('y','duration','campaign','pdays','previous','euribor3m')\n\n\nbank_df &lt;- bank_df %&gt;% \n    mutate(y = factor(y, levels=c('no', 'yes')))\n\nbank_df %&gt;% \n    count(y) %&gt;% \n    mutate(pcnt = scales::percent(n /sum(n)))"
+  },
+  {
+    "objectID": "model_value.html#predictive-model-caret",
+    "href": "model_value.html#predictive-model-caret",
+    "title": "6  예측모형 가치",
+    "section": "\n6.2 예측모형",
+    "text": "6.2 예측모형\ncaret 팩키지를 통해서 예측모형을 개발한다. createDataPartition() 함수로 훈련/시험 데이터를 나누고, CV 방법을 통해서 최적의 모형을 개발하도록 doSNOW 팩키지로 멀티코어를 활용한 병렬처리를 가능하도록 해서 RPART, GLM, RF 모형에 따른 최적 모형을 개발한다.\n\n# 2. 예측모형 -----\n## 2.1. 훈련/시험 데이터 분할 ------\nlibrary(caret)\n\nbank_index &lt;- createDataPartition(bank_df$y, times =1, p=0.3, list=FALSE)\n\ntrain_df &lt;- bank_df[bank_index, ]\ntest_df  &lt;- bank_df[-bank_index, ]\n\n## 2.2. 모형 개발/검증 데이터셋 준비 ------\n\ncv_folds &lt;- createMultiFolds(train_df$y, k = 10, times = 3)\n\ncv_cntrl &lt;- trainControl(method = \"repeatedcv\", number = 10,\n                         repeats = 3, index = cv_folds)\n\n\n## 2.2. 모형 개발/검증 데이터셋 준비 ------\n\nlibrary(doSNOW)\n# 실행시간\nstart.time &lt;- Sys.time()\n\ncl &lt;- makeCluster(4, type = \"SOCK\")\nregisterDoSNOW(cl)\n\nbank_rpart &lt;- train(y ~ ., data = train_df, \n                    method = \"rpart\", \n                    trControl = cv_cntrl, \n                    tuneLength = 7)\n\nbank_glm   &lt;- train(y ~ ., data = train_df, \n                    method = \"glm\",\n                    family = \"binomial\",\n                    trControl = cv_cntrl, \n                    tuneLength = 7)\n\nbank_rf    &lt;- train(y ~ ., data = train_df, \n                   method = \"rf\",\n                   trControl = cv_cntrl, \n                   tuneLength = 7,\n                   importance = TRUE)\n\nstopCluster(cl)\n\ntotal.time &lt;- Sys.time() - start.time\ntotal.time\n\n# bank_rpart_m &lt;- bank_rpart$finalModel\n# bank_glm_m &lt;- bank_glm$finalModel"
+  },
+  {
+    "objectID": "model_value.html#predictive-model-caret-business-dataset",
+    "href": "model_value.html#predictive-model-caret-business-dataset",
+    "title": "6  예측모형 가치",
+    "section": "\n7.1 이득과 향상도 데이터",
+    "text": "7.1 이득과 향상도 데이터\n이득(gain), 향상도(lift) 계산을 위해서 먼저 예측모형에서 데이터를 준비한다. 필요한 데이터는 예측값(확률/스코어 점수)과 라벨이 된다.\n\nbank_rpart_pred &lt;- predict(bank_rpart, newdata=test_df, type=\"prob\")[,2] %&gt;% tbl_df\nbank_glm_pred   &lt;- predict(bank_glm, newdata=test_df, type=\"prob\")[,2] %&gt;% tbl_df\nbank_rf_pred    &lt;- predict(bank_rf, newdata=test_df, type=\"prob\")[,2] %&gt;% tbl_df\n\nbank_pred_df &lt;- data.frame(bank_glm_pred, bank_rpart_pred, bank_rf_pred, test_df$y) %&gt;% tbl_df %&gt;% \n    rename(prob_glm =value,\n           prob_rpart = `value.1`, \n           prob_rf = `value.2`, \n           y = `test_df.y`)\n\nbank_pred_df %&gt;% \n    sample_n(100) %&gt;% \n    DT::datatable()"
+  },
+  {
+    "objectID": "model_value.html#predictive-model-caret-business-dataset-compute",
+    "href": "model_value.html#predictive-model-caret-business-dataset-compute",
+    "title": "6  예측모형 가치",
+    "section": "\n7.2 이득과 향상도 계산",
+    "text": "7.2 이득과 향상도 계산\n예측모형에서 이득과 향상도 계산을 위한 데이터가 준비되었다면 다음 단계로 이득(gain), 향상도(lift)를 계산하여 데이터프레임으로 준비한다.\n\n7.2.1 caret 팩키지 - lift() 함수\ncaret 팩키지 lift() 함수를 통해 이득과 향상도를 계산할 수 있으나 총 표본 대비 비율로 나눠져서 사용시 주의가 요망된다.\n\nlift_df &lt;- caret::lift(y ~ prob_glm + prob_rf + prob_rpart, data=bank_pred_df, cuts=11, class=\"yes\")\n\nlift_df$data %&gt;% \n    filter(liftModelVar == 'prob_rf')  %&gt;% \n    DT::datatable()\n\n# ggplot(lift_df, value=10)\n\n\n7.2.2 gains 팩키지 - gains() 함수\ngains 팩키지 gains() 함수를 통해 이득과 향상도를 계산할 수 있으나, 그 다음 후속 작업을 위해서 데이터프레임 변환작업을 수행하면 되는데 기본적으로 향상도와 이득에 대한 중요정보를 십분위수에 맞춰 모두 계산되어 있어 이를 참조값으로 사용한다.\n\nlibrary(gains)\n\ngains_tbl &lt;- gains(actual    = as.integer(bank_pred_df$y)-1,\n                   predicted = bank_pred_df$prob_glm, \n                   groups=10)\n\ngains_df &lt;- tibble(\n    x = gains_tbl$depth,\n    obs = gains_tbl$obs,\n    cume.obs = gains_tbl$cume.obs,\n    mean.resp = gains_tbl$mean.resp, \n    cume.mean.resp = gains_tbl$cume.mean.resp,\n    cume.pct.of.total = gains_tbl$cume.pct.of.total,\n    lift = gains_tbl$lift, \n    cume.lift = gains_tbl$cume.lift,\n    mean.prediction = gains_tbl$mean.prediction,\n    min.prediction = gains_tbl$mean.prediction, \n    max.prediction = gains_tbl$max.prediction, \n    conf = gains_tbl$conf, \n    optimal = gains_tbl$optimal, \n    num.groups = gains_tbl$num.groups,\n    percents = gains_tbl$percents\n) %&gt;% \n    add_row(x=0, obs=0, cume.obs=0, mean.resp=0, cume.mean.resp=0, cume.pct.of.total=0, lift=0,\n            cume.lift=0, mean.prediction=0, min.prediction=0, max.prediction=0, conf=\"none\",\n            optimal = \"false\",num.groups=10, percents=\"false\") %&gt;% \n    arrange(x)\n\nDT::datatable(gains_df)\n\n# gains_df %&gt;% \n#     ggplot(aes(x=x, y=cume.pct.of.total)) +\n#       geom_line() +\n#       geom_point() +\n#       scale_y_continuous(limits=c(0,1)) +\n#       geom_abline(slope=1, intercept = 0)\n\n\n7.2.3 사용자 정의 함수\nLISTEN DATA, “UNDERSTAND GAIN AND LIFT CHARTS”를 참조해서 직접 사용자 정의 함수를 작성해도 가능하다.\n\ncustom_lift &lt;- function(label_var, prob_var, groups=10) {\n    \n    tmp_df &lt;- data.frame(cbind(label_var, prob_var))\n    \n    tmp_df &lt;- tmp_df %&gt;%\n        mutate(decile = ntile(desc(prob_var), groups))\n\n    gain_table &lt;- tmp_df %&gt;% \n        group_by(decile) %&gt;%\n        summarise_at(vars(label_var), funs(total = n(),\n                                           total_resp = sum(., na.rm = TRUE))) %&gt;%\n        mutate(cum_resp = cumsum(total_resp),\n               gain     = cum_resp / sum(total_resp) * 100,\n               cum_lift = gain / (decile*(100/groups)))\n    return(gain_table)\n}\n\ncustom_lift_df &lt;- custom_lift(as.integer(bank_pred_df$y)-1, bank_pred_df$prob_glm, 10)\n\nDT::datatable(custom_lift_df)"
+  },
+  {
+    "objectID": "model_value.html#predictive-model-caret-business-cumulative-gains",
+    "href": "model_value.html#predictive-model-caret-business-cumulative-gains",
+    "title": "6  예측모형 가치",
+    "section": "\n7.3 누적 이득 그래프",
+    "text": "7.3 누적 이득 그래프\n누적 이득 그래프(Cumulative gains plot)는 예측모형을 적용해서 십분위 X 까지 선택하게 되면, 실제 목표 라벨을 실제 몇 % 까지 예측/기대할 수 있는지에 대한 답을 제공한다.\nRF가 최종 예측모형으로 선정되었다면 이를 활용하여 “누적 이득 그래프”로 시각화해보고 예측모형의 사업성과를 추정해보자.\n\nlibrary(extrafont)\nloadfonts()\n\n(gains_glm_tbl &lt;- gains(actual    = as.integer(bank_pred_df$y)-1,\n                       predicted = bank_pred_df$prob_glm, \n                       groups=10))\n\ngains_glm_df &lt;- tibble(\n    x = gains_glm_tbl$depth,\n    obs = gains_glm_tbl$obs,\n    cume.obs = gains_glm_tbl$cume.obs,\n    mean.resp = gains_glm_tbl$mean.resp, \n    cume.mean.resp = gains_glm_tbl$cume.mean.resp,\n    cume.pct.of.total = gains_glm_tbl$cume.pct.of.total,\n    lift = gains_glm_tbl$lift, \n    cume.lift = gains_glm_tbl$cume.lift,\n    mean.prediction = gains_glm_tbl$mean.prediction,\n    min.prediction = gains_glm_tbl$mean.prediction, \n    max.prediction = gains_glm_tbl$max.prediction, \n    conf = gains_glm_tbl$conf, \n    optimal = gains_glm_tbl$optimal, \n    num.groups = gains_glm_tbl$num.groups,\n    percents = gains_glm_tbl$percents\n) %&gt;% \n    add_row(x=0, obs=0, cume.obs=0, mean.resp=0, cume.mean.resp=0, cume.pct.of.total=0, lift=0,\n            cume.lift=0, mean.prediction=0, min.prediction=0, max.prediction=0, conf=\"none\",\n            optimal = \"false\",num.groups=10, percents=\"false\") %&gt;% \n    arrange(x) %&gt;% \n    mutate(decile = x / 10 %&gt;% as.integer)\n\n\n\ngains_glm_df %&gt;% \n    ggplot(aes(x=decile, y=cume.pct.of.total)) +\n      geom_point(size=2) +\n      geom_line(size=1.3) +\n      geom_abline(slope=0.1, intercept = 0) +\n      scale_x_continuous(limits=c(0,10), breaks = seq(0,10,1)) +\n      scale_y_continuous(labels = scales::percent) +\n      theme_minimal() +\n      labs(x=\"십분위\", y=\"누적 이득(Cumulative Gains)\", title=\"포르투칼 마케팅 캠페인 누적 이득 그래프\") \n\n\n\n포르투칼 마케팅 캠페인 누적 이득 그래프"
+  },
+  {
+    "objectID": "model_value.html#predictive-model-caret-business-lift",
+    "href": "model_value.html#predictive-model-caret-business-lift",
+    "title": "6  예측모형 가치",
+    "section": "\n7.4 향상 리프트(Lift) 그래프",
+    "text": "7.4 향상 리프트(Lift) 그래프\n누적 향상(리프트) 그래프(Cumulative lift plot)는 예측모형을 적용해서 십분위수 X까지 선택하게 되면, 예측모형을 전혀 사용하지 않을 때 대비하여 몇배나 더 효과가 있는지에 대한 대답을 제공한다.\n\ngains_glm_df %&gt;% \n    filter(x !=0) %&gt;% \n    ggplot(aes(x=decile, y=cume.lift/100)) +\n      geom_point(size=2) +\n      geom_line(size=1.3) +\n      geom_hline(yintercept=1, size=1.3, color=\"darkgray\") +\n      scale_x_continuous(limits=c(1,10), breaks = seq(0,10,1)) +\n      scale_y_continuous(limits=c(0.5,6), breaks = seq(0,6,1)) +\n      theme_minimal(base_family = \"NanumGothic\") +\n      labs(x=\"십분위\", y=\"누적 향상도(Cumulative Lift)\", title=\"포르투칼 마케팅 캠페인 누적 향상도 그래프\") \n\n\n\n포르투칼 마케팅 캠페인 누적 향상도 그래프"
+  },
+  {
+    "objectID": "model_value.html#predictive-model-caret-business-response-plot",
+    "href": "model_value.html#predictive-model-caret-business-response-plot",
+    "title": "6  예측모형 가치",
+    "section": "\n7.5 반응 그래프(Reponse Plot)",
+    "text": "7.5 반응 그래프(Reponse Plot)\n반응 그래프(Response Plot)는 예측모형을 적합시켜서 십분위수 X를 선택하게 되면, 해당 십분위수에서 기대되는 예상 반응율을 몇 %가 되는지에 대한 답을 제공한다.\n\navg_response_pcnt &lt;- gains_glm_df$cume.mean.resp[11]\n\ngains_glm_df %&gt;% \n    filter(x !=0) %&gt;% \n    ggplot(aes(x=decile, y=mean.resp)) +\n      geom_point(size=2) +\n      geom_line(size=1.3) +\n      geom_hline(yintercept=avg_response_pcnt, size=1.3, color=\"darkgray\") +\n      scale_x_continuous(limits=c(1,10), breaks = seq(0,10,1)) +\n      scale_y_continuous(limits=c(0,0.6), breaks = seq(0,0.6,0.1), labels = scales::percent) +\n      theme_minimal(base_family = \"NanumGothic\") +\n      labs(x=\"십분위\", y=\"평균 반응율(%)\", title=\"포르투칼 마케팅 캠페인 반응율 그래프\") \n\n\n\n포르투칼 마케팅 캠페인 반응율 그래프"
+  },
+  {
+    "objectID": "model_value.html#predictive-model-caret-business-cumulative-response-plot",
+    "href": "model_value.html#predictive-model-caret-business-cumulative-response-plot",
+    "title": "6  예측모형 가치",
+    "section": "\n7.6 누적 반응 그래프(Cumulative Reponse Plot)",
+    "text": "7.6 누적 반응 그래프(Cumulative Reponse Plot)\n누적 반응 그래프(Cumulative Response Plot)는 예측모형을 적합시켜서 해당 십분위수 X까지 누적하여 선택하게 되면, 해당 십분위수에서 기대되는 예상 반응율을 몇 %가 되는지에 대한 답을 제공한다.\n\ngains_glm_df %&gt;% \n    filter(x !=0) %&gt;% \n    ggplot(aes(x=decile, y=cume.mean.resp)) +\n      geom_point(size=2) +\n      geom_line(size=1.3) +\n      geom_hline(yintercept=avg_response_pcnt, size=1.3, color=\"darkgray\") +\n      scale_x_continuous(limits=c(1,10), breaks = seq(0,10,1)) +\n      scale_y_continuous(limits=c(0,0.6), breaks = seq(0,0.6,0.1), labels = scales::percent) +\n      theme_minimal(base_family = \"NanumGothic\") +\n      labs(x=\"십분위\", y=\"누적 평균 반응율(%)\", title=\"포르투칼 마케팅 캠페인 누적 반응율 그래프\") \n\n\n\n포르투칼 마케팅 캠페인 누적 반응율 그래프"
+  },
+  {
+    "objectID": "model.html",
+    "href": "model.html",
+    "title": "5  모형 카드",
+    "section": "",
+    "text": "모형 카드(“Model Card”)는 기계 학습 모델의 성능, 사용 사례, 제한 사항 및 이상적인 운영 조건 등의 중요한 세부 사항을 기술하는 문서를 지칭한다. Model Card의 주요 목적은 기계학습 모형 사용자에게 모형 특성과 제한 사항을 명확하게 알려주어, 모형이 적절하게 사용할 수 있도록 돕는 것이다.\n모형 카드(Model Card)는 기계 학습 모델의 다양한 측면을 설명하기 위해 다음 정보를 포함하고 있다.\n\n모델 정보(Model Information)\n\n모델 이름\n버전\n사용 사례\n모델 아키텍처\n학습 알고리즘\n라이센스 정보 등\n\n데이터셋 정보(Dataset Information)\n\n학습 데이터셋 설명\n검증 데이터셋 설명\n테스트 데이터셋 설명\n데이터 수집 방법\n데이터 처리 방법 등\n\n모델 성능(Metrics)\n\n전체 성능 지표\n하위그룹별 성능 지표\n가능한 경우, 편향(bias) 분석 결과\n\n편향 및 공정성 평가(Bias & Fairness Evaluation)\n\n고려된 편향 요소\n평가 방법\n결과 및 해석\n\n사용 상황 및 제한 사항(Use-case & Limitations)\n\n추천되는 사용 사례\n추천되지 않는 사용 사례\n알려진 제한 사항\n\n모델 관리 및 업데이트(Model Management)\n업데이트 빈도\n업데이트 메커니즘\n모델의 사용 기간\n추가 정보(Additional Information)\n\n연구 논문 또는 참조 자료\n문의처\n관련 웹사이트 링크 등"
+  },
+  {
+    "objectID": "model.html#모형-카드",
+    "href": "model.html#모형-카드",
+    "title": "5  모형 관리",
+    "section": "5.1 모형 카드",
+    "text": "5.1 모형 카드\n모형 카드(“Model Card”)는 기계 학습 모델의 성능, 사용 사례, 제한 사항 및 이상적인 운영 조건 등의 중요한 세부 사항을 기술하는 문서를 지칭한다. Model Card의 주요 목적은 기계학습 모형 사용자에게 모형 특성과 제한 사항을 명확하게 알려주어, 모형이 적절하게 사용할 수 있도록 돕는 것이다.\n모형 카드(Model Card)는 기계 학습 모델의 다양한 측면을 설명하기 위해 다음 정보를 포함하고 있다.\n\n모델 정보(Model Information)\n\n모델 이름\n버전\n사용 사례\n모델 아키텍처\n학습 알고리즘\n라이센스 정보 등\n\n데이터셋 정보(Dataset Information)\n\n학습 데이터셋 설명\n검증 데이터셋 설명\n테스트 데이터셋 설명\n데이터 수집 방법\n데이터 처리 방법 등\n\n모델 성능(Metrics)\n\n전체 성능 지표\n하위그룹별 성능 지표\n가능한 경우, 편향(bias) 분석 결과\n\n편향 및 공정성 평가(Bias & Fairness Evaluation)\n\n고려된 편향 요소\n평가 방법\n결과 및 해석\n\n사용 상황 및 제한 사항(Use-case & Limitations)\n\n추천되는 사용 사례\n추천되지 않는 사용 사례\n알려진 제한 사항\n\n모델 관리 및 업데이트(Model Management)\n\n업데이트 빈도\n업데이트 메커니즘\n모델의 사용 기간\n\n추가 정보(Additional Information)\n\n연구 논문 또는 참조 자료\n문의처\n관련 웹사이트 링크 등"
+  },
+  {
+    "objectID": "model.html#펭귄-성별예측",
+    "href": "model.html#펭귄-성별예측",
+    "title": "5  모형 관리",
+    "section": "5.2 펭귄 성별예측",
+    "text": "5.2 펭귄 성별예측\n파머펭귄 데이터셋에서 결측값을 제거하고 기계학습모형을 훈련, 시험 데이터로 나누고 모형성능을 평가한 후 펭귄 암수성별 예측 모형을 배포한다. Code Interpreter를 사용해서 코드를 작성한다.\n\nimport pandas as pd\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import OneHotEncoder\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.metrics import accuracy_score, classification_report\n\n# Load the dataset\npenguins = pd.read_csv('data/penguins.csv')\n\n# Preprocessing\npenguins['bill_length_mm'].fillna(penguins['bill_length_mm'].median(), inplace=True)\npenguins['bill_depth_mm'].fillna(penguins['bill_depth_mm'].median(), inplace=True)\npenguins['flipper_length_mm'].fillna(penguins['flipper_length_mm'].median(), inplace=True)\npenguins['body_mass_g'].fillna(penguins['body_mass_g'].median(), inplace=True)\npenguins = penguins.dropna(subset=['sex'])\n\n# Splitting the data into training and testing sets\nX = penguins.drop(columns=['rowid', 'sex'])\ny = penguins['sex']\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)\n\n# One-hot encoding categorical variables\nencoder = OneHotEncoder(drop='first')\nencoded_train = encoder.fit_transform(X_train[['species', 'island']])\nencoded_test = encoder.transform(X_test[['species', 'island']])\nX_train_encoded = pd.concat([X_train.drop(columns=['species', 'island']), pd.DataFrame(encoded_train.toarray(), index=X_train.index)], axis=1)\nX_test_encoded = pd.concat([X_test.drop(columns=['species', 'island']), pd.DataFrame(encoded_test.toarray(), index=X_test.index)], axis=1)\n\n# 데이터 프레임의 모든 열 이름을 문자열로 변환\nX_train_encoded.columns = X_train_encoded.columns.astype(str)\nX_test_encoded.columns = X_test_encoded.columns.astype(str)\n\n\n# Training a logistic regression model\nclf = LogisticRegression(max_iter=1000)\nclf.fit(X_train_encoded, y_train)\n\n# Predictions\ny_pred = clf.predict(X_test_encoded)\n\n# Model evaluation\naccuracy = accuracy_score(y_test, y_pred)\nclassification_rep = classification_report(y_test, y_pred)\nprint(\"Accuracy:\", accuracy)\nprint(\"Classification Report:\", classification_rep)\n\nAccuracy: 0.8955223880597015\nClassification Report:               precision    recall  f1-score   support\n\n      female       0.94      0.86      0.90        36\n        male       0.85      0.94      0.89        31\n\n    accuracy                           0.90        67\n   macro avg       0.90      0.90      0.90        67\nweighted avg       0.90      0.90      0.90        67"
+  },
+  {
+    "objectID": "model.html#성별예측-모형카드",
+    "href": "model.html#성별예측-모형카드",
+    "title": "5  모형 관리",
+    "section": "5.3 성별예측 모형카드",
+    "text": "5.3 성별예측 모형카드\n펭귄 암수성별 예측 모형에 대한 모델 카드를 다음과 같이 작성할 수 있다. 모형 카드는 펭귄 성별 예측 모델의 기본 정보와 성능, 사용 상황 및 제한 사항 등을 포함하고 있고, 필요한 경우 추가적인 정보나 세부 사항을 포함시킬 수 있다.\n\n\n5.3.1 Model Card: 펭귄 성별 예측 모델\n\n모델 정보(Model Information)\n\n모델 이름: 펭귄 성별 예측 모델\n버전: 1.0\n사용 사례: 펭귄의 특성(부리 크기, 날개 길이, 몸무게 등)을 기반으로 성별을 예측\n모델 아키텍처: 로지스틱 회귀\n학습 알고리즘: 로지스틱 회귀 학습 알고리즘\n라이센스 정보: Open Source\n\n데이터셋 정보(Dataset Information)\n\n데이터셋 출처: 제공되지 않음\n특성: species, island, bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g, year\n대상 변수: sex (male, female)\n\n모델 성능(Metrics)\n\n정확도(Accuracy): 89.5%\n여성 펭귄 정밀도(Precision for Female): 94%\n여성 펭귄 재현율(Recall for Female): 86%\n남성 펭귄 정밀도(Precision for Male): 85%\n남성 펭귄 재현율(Recall for Male): 94%\n\n편향 및 공정성 평가(Bias & Fairness Evaluation)\n\n해당 정보가 제공되지 않았으므로, 해당 항목은 생략합니다.\n\n사용 상황 및 제한 사항(Use-case & Limitations)\n\n추천되는 사용 사례: 연구 목적, 펭귄의 성별을 빠르게 예측\n추천되지 않는 사용 사례: 실제 환경에서의 중요한 의사 결정\n알려진 제한 사항: 제공된 데이터셋에만 최적화됨\n\n모델 관리 및 업데이트(Model Management)\n\n업데이트 빈도: 없음 (첫 버전)\n업데이트 메커니즘: 모델을 다시 훈련하여 업데이트\n모델의 사용 기간: 데이터가 변하지 않는 한 계속 사용 가능\n\n추가 정보(Additional Information)\n\n연구 논문 또는 참조 자료: https://arxiv.org/abs/1810.03993\n문의처: admin@r2bit.com\n관련 웹사이트 링크: https://r2bit.com/"
   }
 ]

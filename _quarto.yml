@@ -16,8 +16,14 @@ book:
   date: last-modified
   chapters:
     - index.qmd
-    - data_mgmt.qmd
-    - database_mgmt.qmd
+    - part: "데이터 관리"
+      chapters:
+      - data_mgmt.qmd
+      - database_mgmt.qmd
+      - document.qmd
+      - document_auto.qmd
+      - model.qmd
+      - model_value.qmd
 
     - part: "사례연구"
       chapters:
