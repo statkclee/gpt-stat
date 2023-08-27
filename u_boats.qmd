@@ -13,18 +13,33 @@ download.file(url = "https://raw.githubusercontent.com/kadenhendron/uboat-data/m
 
 ## 유보트 데이터
 
+총 1,153대 유보트가 활동했으며 전쟁이 끝난 후에 유보트 운명을 표로 정리하면 다음과 같다.
+
 ```{r}
 library(tidyverse)
 library(gt)
 
 uboat_raw <- read_csv("data/uboat-data.csv")
 
+
+fate_type_eng <- c("Sunk", "Scuttled", "Surrendered", "Decommissioned", "Missing", 
+"Given", "Damaged", "Captured", "Grounded", "Destroyed")
+
+fate_type_kor <- c("침몰", "자침", "항복", "해체", "실종", "기증", "손상", "포획", "좌초", "파괴")
+
+fate_translation <- tibble(fate_type = fate_type_eng,
+                           fate_type_kor = fate_type_kor)
+
 uboat_raw |> 
   count(fate_type, sort = TRUE, name = "대수") |> 
-  mutate(비율 = 대수 / sum(대수)) |> 
+  mutate(fate_kor = c("침몰", "자침", "항복", "해체", "실종", "기증", "손상", "포획", "좌초", "파괴")) |> 
+  mutate(비율 = 대수 / sum(대수)) |>  
+  relocate(fate_kor, .after = fate_type) |> 
   gt() |> 
+    gt_theme_hangul() |>   
     cols_label(
-        fate_type = md("**유보트 운명**"),
+        fate_type = md("**fate type**"),
+        fate_kor = md("**유보트 운명**"),
     ) |> 
     grand_summary_rows(
       columns = 대수,
@@ -39,7 +54,6 @@ uboat_raw |>
       side = "bottom"
     ) |> 
     fmt_percent(columns = 비율, decimals = 1) |> 
-    gt_theme_hangul() |> 
     cols_align("center") |> 
     tab_header(
       title = "유보트 유형별 운명",
@@ -47,32 +61,98 @@ uboat_raw |>
     )
 ```
 
+### 유보트 성과
+
+유보트가 침몰시킨 선박수(`ships_sunk`) 정보가 담겨있어 이를 바탕으로 활동성과를 분석해보자.
 
 ```{r}
-uboat_raw |> 
+uboat_tbl <- uboat_raw |> 
   # filter( fate_type == "Sunk") |> 
-  mutate(fate_date = lubridate::dmy(fate),
-         fate_date = if_else(is.na(fate_date), lubridate::mdy(fate), fate_date)) |> 
-  group_by(fate_date, fate_type) |> 
-  summarise(uboat_cnt = n())  |> 
-  ggplot(aes(x = fate_date, y = uboat_cnt, color = fate_type)) +
-    geom_jitter() +
-    scale_y_sqrt()
+  mutate(fate_date = lubridate::mdy(fate)) 
+
+uboat_tbl |> 
+  group_by(fate_type) |> 
+  summarise(침몰선박수 = sum(ships_sunk),
+            유보트수 = n()) |> 
+  mutate(비율 = 침몰선박수 / sum(침몰선박수)) |> 
+  arrange(desc(침몰선박수)) |> 
+  left_join(fate_translation) |> 
+  relocate(fate_type_kor, .after = fate_type) |> 
+  relocate(유보트수, .after = fate_type_kor) |> 
+  gt::gt() |> 
+  gt_theme_hangul() |> 
+  cols_align("center") |> 
+  gt::tab_header(
+    title = "유보트 운명유형별 침몰선박수", 
+    subtitle = "자료출처: uboat.net"
+  ) |> 
+    cols_label(
+        fate_type = md("**fate type**"),
+        fate_type_kor = md("**유보트 운명**"),
+    ) |> 
+    grand_summary_rows(
+      columns = 침몰선박수,
+      fns =  list(label = "합계", id='totals', fn = "sum"),
+      fmt = ~ fmt_integer(.),
+      side = "bottom"
+    ) |> 
+    grand_summary_rows(
+      columns = 비율,
+      fns =  list(label = "합계", fn = "sum"),
+      fmt = ~ fmt_percent(., decimals = 0),
+      side = "bottom"
+    ) |> 
+    fmt_percent(columns = 비율, decimals = 1) |> 
+    fmt_integer(침몰선박수) |> 
+    tab_spanner(label = "침몰선박", columns = c(침몰선박수, 비율))
+    
 ```
 
 
 ```{r}
-uboat_raw |> 
-  arrange(desc(ships_sunk)) |> 
-  select(name, type, fate_type, ships_sunk)
+uboat_tbl |> 
+  mutate(fate_yearmon = floor_date(fate_date, "month")) |> 
+  group_by(fate_yearmon) |> 
+  summarise(침몰선박수 = sum(ships_sunk)) |> 
+  arrange(desc(침몰선박수)) |> 
+  ggplot(aes(x = fate_yearmon, y = 침몰선박수)) +
+    geom_line() +
+    theme_korean() +
+    labs(x ="",
+         title = "월별 유보트 침몰선박수")
 ```
 
 ```{r}
-uboat_raw
+library(giscoR)
+library(sf)
+
+world <- gisco_get_countries()
+
+sunk_sf <- uboat_tbl |> 
+  filter(fate_type  == "Sunk")  |> 
+  mutate(sunk_year = year(fate_date)) |> 
+  select(name, fat_lon, fate_lat, sunk_year) |> 
+  mutate(across(fat_lon:fate_lat, as.numeric)) |> 
+  mutate(sunk_year = as.factor(sunk_year)) |> 
+  drop_na() |> 
+  st_as_sf(coords = c("fat_lon", "fate_lat"), crs = sf::st_crs(world))
+
+sunk_sf |> 
+  mutate(sunk_year = case_when(sunk_year %in% c(1939, 1940) ~ "1939-40",
+                   TRUE ~ sunk_year)) |> 
+  ggplot() +
+    geom_sf(size = 0.5, aes(color = sunk_year)) +
+    geom_sf(data = world) +
+    facet_wrap( ~ sunk_year ) +
+    theme_korean() +
+    theme(legend.position = "none") +
+    labs(title = "연도별 침몰 유보트 좌표")
 ```
 
-## 목표 데이터
 
+## 목표선박 데이터
+
+GitHub 저장소에 침몰선박에 대한 정보도 확인해보자.
 
 ```{r}
 #| eval: false
@@ -84,74 +164,55 @@ download.file(url = "https://raw.githubusercontent.com/kadenhendron/uboat-data/m
 ```{r}
 library(tidyverse)
 library(gt)
+library(gtExtras)
+library(countrycode)
 
 target_raw <- read_csv("data/uboat-target-data.csv")
-
-target_raw |> 
-  count(nationality, sort = TRUE)
 
 target_tbl <- target_raw |> 
   mutate(attack_date = lubridate::mdy(attack_date)) |> 
   mutate(yearmon = floor_date(attack_date, "month")) 
 
+ships_nationality <- target_tbl |> 
+  mutate(nationality = fct_lump(nationality, n = 9, other_level = "기타국가")) |> 
+  group_by(nationality) |> 
+  summarise(선박수 = n()) |> 
+  arrange(desc(선박수))
+
+top10_iso <- tribble(~"nationality", ~"iso3c", ~"country_name", ~"country_name_kr",
+"British", "GBR",  "United Kingdom", "영국",
+"American", "USA",  "United States", "미국",
+"기타국가", "", "ETC", "기타",
+"Norwegian", "NOR",  "Norway", "노르웨이",
+"Dutch", "NLD",  "Denmark", "덴마크", # 주의: Dutch는 네덜란드 사람을 나타내며, Denmark는 덴마크를 의미합니다.
+"Greek", "GRC",  "Greece", "그리스",
+"Soviet", "SUN", "Russia", "러시아", # 주의: Soviet는 소비에트 연방을 나타냅니다. 현대의 러시아와는 다름니다.
+"Swedish", "SWE",  "Sweden", "스웨덴",
+"Panamanian", "PAN",  "Panama", "파나마",
+"Canadian", "CAN",  "Canada", "캐나다")
+
 target_tbl |> 
-  group_by(yearmon) |> 
-  summarise(tonnage = sum(tonnage)) |>  
-  ggplot(aes(x = yearmon, y = tonnage)) +
-    geom_line() +
-    theme_korean() +
-    labs(title = "월별 유보트 격침 톤수")
-```
-
-```{r}
-target_tbl |> 
-  mutate(국적 = case_when(str_detect(nationality, "British")  ~ "영국",
-                          str_detect(nationality, "American")  ~ "미국",
-                          TRUE ~ "그외")) |> 
-  group_by(국적, yearmon) |> 
-  summarise(침몰선박수 = n()) |> 
-  ggplot(aes(x = yearmon, y = 침몰선박수, fill = 국적)) +
-    geom_col() +
-    theme_korean() +
-    labs(title = "월별 유보트 격침 톤수")  
-```
-
-
-
-```{r}
-library(giscoR)
-library(sf)
-
-world <- gisco_get_countries()
-
-target_sf <- target_tbl |> 
-  filter(loss_type  == "Sunk")  |> 
-  select(name, attack_lat, attack_lo) |> 
-  drop_na() |> 
-  st_as_sf(coords = c("attack_lo", "attack_lat"), crs = sf::st_crs(world))
-
-ggplot() +
-  geom_sf(data = world) +
-  geom_sf(data = target_sf, size = 0.5)
-
+  mutate(nationality = fct_lump(nationality, n = 9, other_level = "기타국가")) |> 
+  group_by(nationality, yearmon) |> 
+  summarise(선박수 = n()) |> 
+  group_by(nationality) |> 
+  summarise(ships_data = list(선박수)) |>  
+  left_join(ships_nationality) |> 
+  arrange(desc(선박수)) |> 
+  left_join(top10_iso) |> 
+  mutate(iso_2 = countrycode(country_name, origin = "country.name", "iso2c")) |> 
+  relocate(iso_2, .before = nationality) |> 
+  select(iso_2, 국가명 = country_name_kr, 선박수, ships_data) |> 
+  gt() |> 
+    gtExtras::gt_plt_sparkline(ships_data) |> 
+    fmt_flag(columns = iso_2) |> 
+    cols_label(
+      iso_2 = "",
+      선박수 = "총 침몰선박수",
+      ships_data = "월별 선박침몰"
+    )  |> 
+    gt_theme_hangul()
 ```
 
 
-```{r}
-library(giscoR)
-library(sf)
 
-world <- gisco_get_countries()
-
-uboat_sf <- uboat_raw |> 
-  filter(fate_type  == "Sunk")  |> 
-  select(id, fat_lon, fate_lat) |> 
-  mutate(across(fat_lon:fate_lat, as.numeric)) |> 
-  drop_na() |> 
-  st_as_sf(coords = c("fat_lon", "fate_lat"), crs = sf::st_crs(world))
-
-ggplot() +
-  geom_sf(data = world) +
-  geom_sf(data = uboat_sf, size = 0.5)
-
-```
