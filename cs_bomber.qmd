@@ -1,0 +1,85 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+# 폭격비행기
+
+```{r}
+#| label: download-world-war
+#| eval: false
+
+europe_names <- glue::glue("Europe_{1939:1945}")
+pacific_names <- glue::glue("Pacific_{c(1937, 1939, 1941:1945)}")
+
+for(i in 1:length(europe_names)) {
+  # cat(europe_names[i], "\n")
+  # download.file(url = glue::glue("http://www.andrewclem.com/War/Maps/{europe_names[i]}.gif"),
+  #             destfile = glue::glue("{here::here()}/fig/world_war/{europe_names[i]}.png"), mode = "wb" )
+  cat(pacific_names[i], "\n")
+  download.file(url = glue::glue("http://www.andrewclem.com/War/Maps/{pacific_names[i]}.gif"),
+              destfile = glue::glue("{here::here()}/fig/world_war/{pacific_names[i]}.png"), mode = "wb" )
+}
+```
+
+```{r}
+#| label: make-gif
+#| eval: false
+
+library(tidyverse)
+library(magick)
+
+world_war_files <- fs::dir_ls(path = "fig/world_war", glob = "*.png")
+
+europe_files <- world_war_files[str_detect(world_war_files, "Europe")]
+pacific_files <- world_war_files[!str_detect(world_war_files, "Europe")]
+
+## 유럽 전황 
+europe_m <- magick::image_read(pacific_files[1])
+
+for (i in 2:length(europe_files)) {
+  europe_m <- c(europe_m, magick::image_read(europe_files[i]))
+}
+
+europe_ani <- magick::image_animate(europe_m, fps = 1, loop = 0, dispose = "previous")
+magick::image_write(europe_ani, "fig/world_war_europe.gif")
+
+## 태평양 전황 
+pacific_m <- magick::image_read(pacific_files[1])
+
+for (i in 2:length(pacific_files)) {
+  pacific_m <- c(pacific_m, magick::image_read(pacific_files[i]))
+}
+
+pacific_ani <- magick::image_animate(pacific_m, fps = 1, loop = 0, dispose = "previous")
+magick::image_write(pacific_ani, "fig/world_war_pacific.gif")
+```
+
+
+### 세계대전 - 유럽
+
+![](images/world_war_europe.gif)
+
+### 세계대전 - 태평양
+
+![](images/world_war_pacific.gif)
+
+### 대공포
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/48zE-hRAYEA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+
+
+
+### 폭격기 데이터
+
+![](images/Survivorship-bias.png){fig-align="center" width="671"}
+
+### 고민
+
+![](images/hum_meme.jpg){fig-align="center" width="500"}
+
+### 업그레이드
+
+![](images/survivorship_bias_plane.png){fig-align="center" width="1698"}
+

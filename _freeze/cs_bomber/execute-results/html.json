@@ -1,0 +1,14 @@
+{
+  "hash": "a87dc0b5c1b77e3596d9a56b901e9194",
+  "result": {
+    "markdown": "---\noutput: html_document\neditor_options: \n  chunk_output_type: console\n---\n\n\n# 폭격비행기\n\n\n::: {.cell}\n\n```{.r .cell-code}\neurope_names <- glue::glue(\"Europe_{1939:1945}\")\npacific_names <- glue::glue(\"Pacific_{c(1937, 1939, 1941:1945)}\")\n\nfor(i in 1:length(europe_names)) {\n  # cat(europe_names[i], \"\\n\")\n  # download.file(url = glue::glue(\"http://www.andrewclem.com/War/Maps/{europe_names[i]}.gif\"),\n  #             destfile = glue::glue(\"{here::here()}/fig/world_war/{europe_names[i]}.png\"), mode = \"wb\" )\n  cat(pacific_names[i], \"\\n\")\n  download.file(url = glue::glue(\"http://www.andrewclem.com/War/Maps/{pacific_names[i]}.gif\"),\n              destfile = glue::glue(\"{here::here()}/fig/world_war/{pacific_names[i]}.png\"), mode = \"wb\" )\n}\n```\n:::\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(tidyverse)\nlibrary(magick)\n\nworld_war_files <- fs::dir_ls(path = \"fig/world_war\", glob = \"*.png\")\n\neurope_files <- world_war_files[str_detect(world_war_files, \"Europe\")]\npacific_files <- world_war_files[!str_detect(world_war_files, \"Europe\")]\n\n## 유럽 전황 \neurope_m <- magick::image_read(pacific_files[1])\n\nfor (i in 2:length(europe_files)) {\n  europe_m <- c(europe_m, magick::image_read(europe_files[i]))\n}\n\neurope_ani <- magick::image_animate(europe_m, fps = 1, loop = 0, dispose = \"previous\")\nmagick::image_write(europe_ani, \"fig/world_war_europe.gif\")\n\n## 태평양 전황 \npacific_m <- magick::image_read(pacific_files[1])\n\nfor (i in 2:length(pacific_files)) {\n  pacific_m <- c(pacific_m, magick::image_read(pacific_files[i]))\n}\n\npacific_ani <- magick::image_animate(pacific_m, fps = 1, loop = 0, dispose = \"previous\")\nmagick::image_write(pacific_ani, \"fig/world_war_pacific.gif\")\n```\n:::\n\n\n\n### 세계대전 - 유럽\n\n![](images/world_war_europe.gif)\n\n### 세계대전 - 태평양\n\n![](images/world_war_pacific.gif)\n\n### 대공포\n\n<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/48zE-hRAYEA\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen>\n\n\n\n### 폭격기 데이터\n\n![](images/Survivorship-bias.png){fig-align=\"center\" width=\"671\"}\n\n### 고민\n\n![](images/hum_meme.jpg){fig-align=\"center\" width=\"500\"}\n\n### 업그레이드\n\n![](images/survivorship_bias_plane.png){fig-align=\"center\" width=\"1698\"}\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
