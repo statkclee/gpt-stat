@@ -29,6 +29,7 @@ book:
       chapters:
         - cs_prussia.qmd
         - u_boats.qmd
+        - cs_german_tank.qmd
 
     - part: "출판"
       chapters:

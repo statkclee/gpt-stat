@@ -1,3 +1,8 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
 
 # 유보드
 
@@ -18,6 +23,7 @@ download.file(url = "https://raw.githubusercontent.com/kadenhendron/uboat-data/m
 ```{r}
 library(tidyverse)
 library(gt)
+library(gtExtras)
 
 uboat_raw <- read_csv("data/uboat-data.csv")
 
@@ -109,6 +115,11 @@ uboat_tbl |>
 
 
 ```{r}
+
+# extrafont::font_import(pattern = "NanumSquare", prompt = FALSE)
+
+extrafont::loadfonts() 
+
 uboat_tbl |> 
   mutate(fate_yearmon = floor_date(fate_date, "month")) |> 
   group_by(fate_yearmon) |> 

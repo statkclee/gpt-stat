@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko-KR" xml:lang="ko-KR"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.288">
+<meta name="generator" content="quarto-1.3.433">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="이광춘">
 <title>GPT 통계 - 6&nbsp; 예측모형 가치</title>
@@ -81,11 +81,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "panel-placement": "start",
   "type": "textbox",
   "limit": 20,
-  "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
-  ],
   "language": {
     "search-no-results-text": "일치 없음",
     "search-matching-documents-text": "일치된 문서",
@@ -107,9 +102,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_mgmt.html">데이터 관리</a></li><li class="breadcrumb-item"><a href="./model_value.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">예측모형 가치</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-        </a>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_mgmt.html">데이터 관리</a></li><li class="breadcrumb-item"><a href="./model_value.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">예측모형 가치</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
@@ -170,7 +165,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./model.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">모형 카드</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">모형 관리</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -196,6 +191,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">프로이센 기병</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./u_boats.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">유보드</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cs_german_tank.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">독일 탱크 문제</span></span></a>
+  </div>
+</li>
       </ul>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -210,7 +217,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./clt.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">중심극한정리 예시</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">중심극한정리 예시</span></span></a>
   </div>
 </li>
       </ul>
@@ -218,7 +225,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">참고문헌</span></a>
+ <span class="menu-text">References</span></a>
   </div>
 </li>
     </ul>
@@ -252,7 +259,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_mgmt.html">데이터 관리</a></li><li class="breadcrumb-item"><a href="./model_value.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">예측모형 가치</span></a></li></ol></nav><div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <h1 class="title"><span id="predictive-model" class="quarto-section-identifier"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">예측모형 가치</span></span></h1>
 </div>
 
@@ -265,7 +272,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     
   </div>
   
-
 
 </header><p>예측모형을 잘 활용하여 사업적 효과를 내는 것은 AUC 값이 높은 성능 좋은 예측모형을 개발하는 것과 다른 문제가 된다. 예측모형개발이 수월해지고 사업에 활용이 많이 지면서 예측모형을 사업쪽에 설명하고 사업쪽의 의견을 반영하는 방법에 대한 연구와 활용이 빈번해지고 있다. 이를 위해서 먼저 예측모형을 의사결정나무 모형과 일반화 선형모형으로 예측모형을 개발하여 포르투갈 은행에서 개발된 상품에 가입을 하는지 예측하는 은행 마케팅 캠페인 데이터다. <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
 <section id="predictive-model-x" class="level2" data-number="6.1"><h2 data-number="6.1" class="anchored" data-anchor-id="predictive-model-x">
@@ -526,7 +532,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x<span class="op">=</span><span class="st">"십분위"</span>, y<span class="op">=</span><span class="st">"누적 이득(Cumulative Gains)"</span>, title<span class="op">=</span><span class="st">"포르투칼 마케팅 캠페인 누적 이득 그래프"</span><span class="op">)</span> </span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/model_value_gain.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="포르투칼 마케팅 캠페인 누적 이득 그래프"><img src="images/model_value_gain.png" class="img-fluid figure-img"></a></p>
+<figure class="figure"><p><a href="images/model_value_gain.png" class="lightbox" title="포르투칼 마케팅 캠페인 누적 이득 그래프" data-gallery="quarto-lightbox-gallery-1"><img src="images/model_value_gain.png" class="img-fluid figure-img"></a></p>
 <figcaption class="figure-caption">포르투칼 마케팅 캠페인 누적 이득 그래프</figcaption></figure>
 </div>
 </section><section id="predictive-model-caret-business-lift" class="level2" data-number="7.4"><h2 data-number="7.4" class="anchored" data-anchor-id="predictive-model-caret-business-lift">
@@ -545,7 +551,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x<span class="op">=</span><span class="st">"십분위"</span>, y<span class="op">=</span><span class="st">"누적 향상도(Cumulative Lift)"</span>, title<span class="op">=</span><span class="st">"포르투칼 마케팅 캠페인 누적 향상도 그래프"</span><span class="op">)</span> </span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/model_value_lift.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="포르투칼 마케팅 캠페인 누적 향상도 그래프"><img src="images/model_value_lift.png" class="img-fluid figure-img"></a></p>
+<figure class="figure"><p><a href="images/model_value_lift.png" class="lightbox" title="포르투칼 마케팅 캠페인 누적 향상도 그래프" data-gallery="quarto-lightbox-gallery-2"><img src="images/model_value_lift.png" class="img-fluid figure-img"></a></p>
 <figcaption class="figure-caption">포르투칼 마케팅 캠페인 누적 향상도 그래프</figcaption></figure>
 </div>
 </section><section id="predictive-model-caret-business-response-plot" class="level2" data-number="7.5"><h2 data-number="7.5" class="anchored" data-anchor-id="predictive-model-caret-business-response-plot">
@@ -566,7 +572,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x<span class="op">=</span><span class="st">"십분위"</span>, y<span class="op">=</span><span class="st">"평균 반응율(%)"</span>, title<span class="op">=</span><span class="st">"포르투칼 마케팅 캠페인 반응율 그래프"</span><span class="op">)</span> </span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/model_value_response.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="포르투칼 마케팅 캠페인 반응율 그래프"><img src="images/model_value_response.png" class="img-fluid figure-img"></a></p>
+<figure class="figure"><p><a href="images/model_value_response.png" class="lightbox" title="포르투칼 마케팅 캠페인 반응율 그래프" data-gallery="quarto-lightbox-gallery-3"><img src="images/model_value_response.png" class="img-fluid figure-img"></a></p>
 <figcaption class="figure-caption">포르투칼 마케팅 캠페인 반응율 그래프</figcaption></figure>
 </div>
 </section><section id="predictive-model-caret-business-cumulative-response-plot" class="level2" data-number="7.6"><h2 data-number="7.6" class="anchored" data-anchor-id="predictive-model-caret-business-cumulative-response-plot">
@@ -585,19 +591,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x<span class="op">=</span><span class="st">"십분위"</span>, y<span class="op">=</span><span class="st">"누적 평균 반응율(%)"</span>, title<span class="op">=</span><span class="st">"포르투칼 마케팅 캠페인 누적 반응율 그래프"</span><span class="op">)</span> </span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/model_value_cumulative.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="포르투칼 마케팅 캠페인 누적 반응율 그래프"><img src="images/model_value_cumulative.png" class="img-fluid figure-img"></a></p>
+<figure class="figure"><p><a href="images/model_value_cumulative.png" class="lightbox" title="포르투칼 마케팅 캠페인 누적 반응율 그래프" data-gallery="quarto-lightbox-gallery-4"><img src="images/model_value_cumulative.png" class="img-fluid figure-img"></a></p>
 <figcaption class="figure-caption">포르투칼 마케팅 캠페인 누적 반응율 그래프</figcaption></figure>
 </div>
 
 
-</section></section><aside id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
+</section></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
 <ol>
 <li id="fn1"><p><a href="https://archive.ics.uci.edu/ml/datasets/bank+marketing#">Bank Marketing Data Set, The data is related with direct marketing campaigns (phone calls) of a Portuguese banking institution. The classification goal is to predict if the client will subscribe a term deposit (variable y)</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p><a href="http://api.rpubs.com/jurrr/411810">Jurriaan Nagelkerke and Pieter Marcus (2018-09-20), “Introducing modelplotr: Plots to evaluate the business value of predictive models”</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn3"><p><a href="http://mlwiki.org/index.php/Cumulative_Gain_Chart">Cumulative Gain Chart</a><a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn4"><p><a href="http://dni-institute.in/blogs/model-validation-using-r-german-credit-data/">DnI institute, “Model Validation using R- German Credit Data”</a><a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn5"><p><a href="https://www.listendata.com/2014/08/excel-template-gain-and-lift-charts.html">LISTEN DATA, “UNDERSTAND GAIN AND LIFT CHARTS”</a><a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol></aside></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -676,9 +682,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+  function tippyHover(el, contentFn) {
     const config = {
       allowHTML: true,
+      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -688,17 +695,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start',
+      placement: 'bottom-start'
     };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -711,81 +709,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        for (let i = 0; i < 2; i++) {
-          container.appendChild(note.children[i].cloneNode(true));
-        }
-        return container.innerHTML
-      } else {
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      return note.innerHTML;
-    }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
-          }
-        } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
-          .then(res => res.text())
-          .then(html => {
-            const parser = new DOMParser();
-            const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
-            if (note !== null) {
-              const html = processXRef(id, note);
-              instance.setContent(html);
-            } 
-          }).finally(() => {
-            instance.enable();
-            instance.show();
-          });
-        }
-      }
-    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -829,7 +752,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
-            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -915,7 +837,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="./model.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">모형 카드</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">모형 관리</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
@@ -925,7 +847,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"loop":true,"closeEffect":"zoom","openEffect":"zoom","selector":".lightbox","descPosition":"bottom"});</script>
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","closeEffect":"zoom","descPosition":"bottom","loop":true,"openEffect":"zoom"});</script>
 
 
 </body></html>
