@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko-KR" xml:lang="ko-KR"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.4.288">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
 <meta name="author" content="이광춘">
-
 <title>GPT 통계 - 9&nbsp; 독일 탱크 문제</title>
 <style>
 code{white-space: pre-wrap;}
@@ -21,8 +18,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
-
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
@@ -31,7 +61,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./clt.html" rel="next">
+<link href="./cs_napolean.html" rel="next">
 <link href="./u_boats.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -44,8 +74,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
-<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
-<script id="quarto-search-options" type="application/json">{
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -69,19 +98,13 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "검색",
     "search-label": "검색"
   }
-}</script>
-
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
+}</script><script src="site_libs/quarto-diagram/mermaid.min.js"></script><script src="site_libs/quarto-diagram/mermaid-init.js"></script><link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 </head>
-
 <body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
@@ -92,13 +115,9 @@ ul.task-list li input[type="checkbox"] {
         <i class="bi bi-search"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">GPT 통계</a> 
     </div>
@@ -110,7 +129,7 @@ ul.task-list li input[type="checkbox"] {
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">서문</span></a>
@@ -124,8 +143,8 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data_mgmt.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">데이터 관리 방법론</span></span></a>
@@ -162,7 +181,7 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
@@ -171,8 +190,8 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./cs_prussia.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">프로이센 기병</span></span></a>
@@ -190,8 +209,26 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">독일 탱크 문제</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cs_napolean.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">나폴레옹 러시아 침공</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cs_bomber.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">폭격비행기</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cs_nightingale.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">나이팅게일</span></span></a>
+  </div>
+</li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
@@ -200,15 +237,15 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./clt.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">중심극한정리 예시</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">중심극한정리 예시</span></span></a>
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
@@ -216,29 +253,24 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
     </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+</div>
+</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">목차</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">목차</h2>
    
   <ul>
-  <li><a href="#문제-정의" id="toc-문제-정의" class="nav-link active" data-scroll-target="#문제-정의"><span class="header-section-number">9.1</span> 문제 정의</a></li>
-  <li><a href="#데이터-수집" id="toc-데이터-수집" class="nav-link" data-scroll-target="#데이터-수집"><span class="header-section-number">9.2</span> 데이터 수집</a></li>
-  <li><a href="#중요성" id="toc-중요성" class="nav-link" data-scroll-target="#중요성"><span class="header-section-number">9.3</span> 중요성</a></li>
-  <li><a href="#월별-탱크생산대수" id="toc-월별-탱크생산대수" class="nav-link" data-scroll-target="#월별-탱크생산대수"><span class="header-section-number">9.4</span> 월별 탱크생산대수</a></li>
-  <li><a href="#통계-추정방법" id="toc-통계-추정방법" class="nav-link" data-scroll-target="#통계-추정방법"><span class="header-section-number">9.5</span> 통계 추정방법</a></li>
-  </ul>
-</nav>
+<li><a href="#%EC%A4%91%EC%9A%94%EC%84%B1" id="toc-중요성" class="nav-link active" data-scroll-target="#%EC%A4%91%EC%9A%94%EC%84%B1"><span class="header-section-number">9.1</span> 중요성</a></li>
+  <li><a href="#%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%88%98%EC%A7%91" id="toc-데이터-수집" class="nav-link" data-scroll-target="#%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%88%98%EC%A7%91"><span class="header-section-number">9.2</span> 데이터 수집</a></li>
+  <li><a href="#%EC%9B%94%EB%B3%84-%ED%83%B1%ED%81%AC%EC%83%9D%EC%82%B0%EB%8C%80%EC%88%98" id="toc-월별-탱크생산대수" class="nav-link" data-scroll-target="#%EC%9B%94%EB%B3%84-%ED%83%B1%ED%81%AC%EC%83%9D%EC%82%B0%EB%8C%80%EC%88%98"><span class="header-section-number">9.3</span> 월별 탱크생산대수</a></li>
+  <li><a href="#%ED%86%B5%EA%B3%84-%EC%B6%94%EC%A0%95%EB%B0%A9%EB%B2%95" id="toc-통계-추정방법" class="nav-link" data-scroll-target="#%ED%86%B5%EA%B3%84-%EC%B6%94%EC%A0%95%EB%B0%A9%EB%B2%95"><span class="header-section-number">9.4</span> 통계 추정방법</a></li>
+  </ul></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./cs_prussia.html">사례연구</a></li><li class="breadcrumb-item"><a href="./cs_german_tank.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">독일 탱크 문제</span></a></li></ol></nav>
-<div class="quarto-title">
-<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">독일 탱크 문제</span></h1>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./cs_prussia.html">사례연구</a></li><li class="breadcrumb-item"><a href="./cs_german_tank.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">독일 탱크 문제</span></a></li></ol></nav><div class="quarto-title">
+<h1 class="title">
+<span class="chapter-number">9</span>&nbsp; <span class="chapter-title">독일 탱크 문제</span>
+</h1>
 </div>
 
 
@@ -252,45 +284,103 @@ ul.task-list li input[type="checkbox"] {
   
 
 
-</header>
+</header><p>2차 세계대전에서 탱크는 전술적 전략의 중심 요소로 부상했다. <strong>전격전(Blitzkrieg)</strong> 같은 기동 전술에서 빠른 전진과 방어선 돌파 능력은 전투흐름을 크게 바꿨다. 강한 화력과 갑옷 보호로 인해 탱크는 전선에서 공격 및 병력 지원에 매우 효과적이었고, 탱크의 존재만으로도 적의 사기를 떨어뜨리는 심리적 효과가 컸을 뿐만 아니라, 독일 Tiger와 Panther 탱크, 소련 T-34와 IS 시리즈와 같은 혁신적인 설계를 적용한 기술발전도 눈부셨다.</p>
+<p>2차 세계대전 전후 독일에서 선보인 전격전의 핵심전력으로 활약한 탱크를 연도별로 정리하면 다음과 같다.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<div>
+<pre class="mermaid mermaid-js">flowchart TB
 
-<section id="문제-정의" class="level2" data-number="9.1">
-<h2 data-number="9.1" class="anchored" data-anchor-id="문제-정의"><span class="header-section-number">9.1</span> 문제 정의</h2>
+1934 --&gt;|"Pz.Kpfw. I (Panzer I)"| 1936
+1936 --&gt;|"Pz.Kpfw. II (Panzer II)"| 1937
+1937 --&gt;|"Pz.Kpfw. III (Panzer III)"| 1938
+1938 --&gt;|"Pz.Kpfw. IV (Panzer IV)"| 1942
+1942 --&gt;|"Pz.Kpfw. V Panther"| 1943
+1942 --&gt;|"Pz.Kpfw. VI Tiger I"| 1943
+1943 --&gt;|"Pz.Kpfw. VI Tiger II (King Tiger)"| 1944
+1944 --&gt;|"Jagdpanzer 38(t) Hetzer"| 1945
+1945 --&gt;|"Maus" | END
+</pre>
+</div>
+</div>
+</div>
+</div>
+<p>위키백과 <a href="https://en.wikipedia.org/wiki/Military_production_during_World_War_II">Military production during World War II</a> 웹사이트에서 제2차 세계대전 국가별 탱크 및 SPG 생산량을 확인할 수 있다. 독일이 팬저 및 타이거 등 고성능 탱크를 생산했지만 생산대수에서 연합국에 한참 밀린 것이 확인된다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rvest.tidyverse.org/">rvest</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/slowkow/ggrepel">ggrepel</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">tank_html</span> <span class="op">&lt;-</span> <span class="fu"><a href="http://xml2.r-lib.org/reference/read_xml.html">read_html</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">'https://en.wikipedia.org/wiki/Military_production_during_World_War_II'</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">tank_tbl</span> <span class="op">&lt;-</span> <span class="va">tank_html</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_element.html">html_elements</a></span><span class="op">(</span><span class="st">".wikitable"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_table.html">html_table</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="va">.</span><span class="op">[[</span><span class="fl">5</span><span class="op">]</span><span class="op">]</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">janitor</span><span class="fu">::</span><span class="fu"><a href="https://sfirke.github.io/janitor/reference/clean_names.html">clean_names</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">contains</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'tanks'</span>, <span class="st">'power'</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span>탱크수<span class="op">=</span> <span class="va">tanks_sp_gs</span>, 생산국가<span class="op">=</span><span class="va">power</span> <span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>탱크수 <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_number.html">parse_number</a></span><span class="op">(</span><span class="va">탱크수</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/drop_na.html">drop_na</a></span><span class="op">(</span><span class="op">)</span>  <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>구분 <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span></span>
+<span>    <span class="va">생산국가</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"British Empire"</span>, <span class="st">"USA and territories"</span>, <span class="st">"USSR"</span>, <span class="st">"Allies"</span><span class="op">)</span> <span class="op">~</span> <span class="st">"연합국"</span>,</span>
+<span>    <span class="va">생산국가</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Germany and territories"</span>, <span class="st">"Hungary"</span>, <span class="st">"Romania"</span>, <span class="st">"Italian Empire"</span>, </span>
+<span><span class="st">"Japanese Empire"</span>, <span class="st">"Axis"</span><span class="op">)</span> <span class="op">~</span> <span class="st">"추축국"</span></span>
+<span>  <span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="va">생산국가</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Allies"</span>, <span class="st">"Axis"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>생산국가 <span class="op">=</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_remove.html">str_remove</a></span><span class="op">(</span><span class="va">생산국가</span>, <span class="st">"( and territories)|( Empire)"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">tank_tbl</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_reorder.html">fct_reorder</a></span><span class="op">(</span><span class="va">구분</span>, <span class="va">탱크수</span><span class="op">)</span>, y <span class="op">=</span> <span class="va">탱크수</span>, fill <span class="op">=</span> <span class="va">생산국가</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/comma.html">comma</a></span><span class="op">)</span> <span class="op">+</span>  </span>
+<span>    <span class="fu"><a href="https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html">geom_text_repel</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">tank_tbl</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">구분</span> <span class="op">==</span> <span class="st">"연합국"</span><span class="op">)</span>, </span>
+<span>              <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">생산국가</span><span class="op">)</span>, position <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/position_stack.html">position_stack</a></span><span class="op">(</span>vjust <span class="op">=</span> <span class="fl">.4</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html">geom_text_repel</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">tank_tbl</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">구분</span> <span class="op">==</span> <span class="st">"추축국"</span><span class="op">)</span>, </span>
+<span>              <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">생산국가</span><span class="op">)</span>, position <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/position_stack.html">position_stack</a></span><span class="op">(</span>vjust <span class="op">=</span> <span class="fl">.4</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>  </span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span><span class="st">""</span>,</span>
+<span>         y <span class="op">=</span> <span class="st">"생산 탱크수"</span>,</span>
+<span>         title <span class="op">=</span> <span class="st">"제2차 세계대전 연합국과 추축국 탱크 생산대수 비교"</span>,</span>
+<span>         caption <span class="op">=</span> <span class="st">"데이터 출처: 위키백과, https://en.wikipedia.org/wiki/Military_production_during_World_War_II"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu">theme_korean</span><span class="op">(</span><span class="op">)</span>   <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html">scale_fill_brewer</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"qual"</span>, palette <span class="op">=</span> <span class="st">"Set2"</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="images/german_tank.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="images/german_tank.jpg" class="img-fluid figure-img" width="640"></a></p>
+<figure class="figure"><p><a href="cs_german_tank_files/figure-html/unnamed-chunk-2-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="cs_german_tank_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></a></p>
 </figure>
 </div>
-</section>
-<section id="데이터-수집" class="level2" data-number="9.2">
-<h2 data-number="9.2" class="anchored" data-anchor-id="데이터-수집"><span class="header-section-number">9.2</span> 데이터 수집</h2>
+</div>
+</div>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="images/german_tank_serial.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="images/german_tank_serial.jpg" class="img-fluid figure-img" width="604"></a></p>
+<figure class="figure"><p><a href="images/german_tank.jpg" class="lightbox" title="위키백과 실린 독일 탱크공장" data-gallery="quarto-lightbox-gallery-2"><img src="images/german_tank.jpg" class="img-fluid figure-img"></a></p>
+<figcaption class="figure-caption">위키백과 실린 독일 탱크공장</figcaption></figure>
+</div>
+<section id="중요성" class="level2" data-number="9.1"><h2 data-number="9.1" class="anchored" data-anchor-id="중요성">
+<span class="header-section-number">9.1</span> 중요성</h2>
+<p>제2차 세계대전에서 독일 탱크 생산대수의 정확한 추정은 연합국의 전략적, 전술적 결정 및 심리적 전쟁을 주도하는 데 결정적인 역할을 했다.</p>
+<p>독일의 탱크 생산능력은 그들의 군사 능력과 전쟁 지속 능력을 나타내는 중요한 지표였다. 이를 통해 연합국은 한정된 자원을 어떻게 효율적으로 사용할지 결정할 수 있었다. 만약 독일이 대규모의 탱크를 적극적으로 생산 중이라는 정보를 획득하면, 연합국은 빠르게 자신들의 탱크 생산을 증대시키거나 대탱크 무기의 개발에 투자하는 등의 전략적 대응을 준비했다.</p>
+<p>탱크 생산대수와 탱크종류는 독일군이 다음에 취할 전략과 전술을 예측하는 데 귀중한 정보를 제공했다. 이러한 정보는 전장에서의 우위를 확보하고 적의 움직임을 선제적으로 차단하는 데 도움을 줬고, 심리적 측면에서도 탱크의 생산 정보는 중요했다. 독일의 실제 탱크 생산 능력을 과소 평가하거나 과대 평가하는 것은 연합국의 사기와 전략에 큰 영향을 미쳤다.</p>
+<p>전쟁이 종료된 이후에도, 독일의 탱크 및 기타 군사 장비의 생산 정보는 평화 협정의 조건을 결정하는 데 중요한 자료로 활용되었으며, 독일의 잠재적 군사 능력을 평가하고 장래의 안전 보장을 위한 조치를 결정하는 데 필수적인 정보자산이 되었다.</p>
+</section><section id="데이터-수집" class="level2" data-number="9.2"><h2 data-number="9.2" class="anchored" data-anchor-id="데이터-수집">
+<span class="header-section-number">9.2</span> 데이터 수집</h2>
+<p>제2차 세계대전 중 독일 탱크의 시리얼 번호 획득은 연합국의 미묘한 정보 수집 작업 중 하나였다. 전투 중 파괴되거나 포획된 독일 탱크들은 대부분 고유의 시리얼 번호가 달려있었으며, 시리얼 번호는 탱크 생산 순서와 일련번호를 나타냈기 때문에, 연합국은 이러한 번호를 꼼꼼히 수집했다. 파손된 탱크 부품에서도 이러한 번호를 발견할 수 있었고, 이를 통해 전체 탱크 생산 규모의 일부를 엿볼 수 있었다. 이런 정보들은 전쟁 중 독일의 탱크 생산 능력을 추정하는 데 매우 중요한 열쇠로 작용했다.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/german_tank_serial.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="images/german_tank_serial.jpg" class="img-fluid figure-img" width="604"></a></p>
 </figure>
 </div>
-</section>
-<section id="중요성" class="level2" data-number="9.3">
-<h2 data-number="9.3" class="anchored" data-anchor-id="중요성"><span class="header-section-number">9.3</span> 중요성</h2>
-<ul>
-<li><p><strong>전략적 평가</strong>: 독일의 군사 능력과 전쟁 유지 능력을 정확히 평가하기 위해서는 탱크와 같은 중요한 군사 장비의 생산 능력 파악.</p></li>
-<li><p><strong>자원 할당</strong>: 연합국은 한정된 자원을 어디에 집중해야 할지 결정하기 위해 독일 탱크 생산 능력을 파악해야 한다. 만약 독일이 큰 규모의 탱크를 생산하고 있다면, 연합국은 더 많은 탱크나 대탱크 무기를 생산하거나 경우에 따라서 전략을 수정해야 함.</p></li>
-<li><p><strong>전술적 결정</strong>: 탱크의 수와 종류는 전투에서 독일군의 전략과 전술에 큰 영향을 미침. 독일의 탱크 생산 능력을 알면 연합국은 독일군의 다음 전략적 움직임을 예측하고 준비할 수 있음.</p></li>
-<li><p><strong>심리적 전쟁</strong>: 탱크 생산 능력에 대한 정보는 연합국과 독일 모두에게 중요한 심리적 요소가 됨. 연합국이 독일의 생산 능력을 과소 평가하면 자신감을 잃을 수 있으며, 반대로 과대 평가하면 필요 이상으로 자원 소비 낭비로 이어짐.</p></li>
-<li><p><strong>평화 협정 및 후속 조치</strong>: 전쟁이 끝난 후, 독일의 군사 능력과 잠재력을 평가하기 위해 탱크와 다른 군사 장비의 생산 데이터가 필요. 평화협정 조건 결정에 중요한 자료.</p></li>
-</ul>
-</section>
-<section id="월별-탱크생산대수" class="level2" data-number="9.4">
-<h2 data-number="9.4" class="anchored" data-anchor-id="월별-탱크생산대수"><span class="header-section-number">9.4</span> 월별 탱크생산대수</h2>
+</section><section id="월별-탱크생산대수" class="level2" data-number="9.3"><h2 data-number="9.3" class="anchored" data-anchor-id="월별-탱크생산대수">
+<span class="header-section-number">9.3</span> 월별 탱크생산대수</h2>
+<p>제2차 세계대전 기간 독일 탱크의 생산 대수를 분석한 표에 따르면, 다양한 추정치와 실제 생산된 탱크의 수를 비교할 수 있다. 1940년 6월에는 통계적 방법을 통해 169대의 탱크가 생산되었다고 추정되었으나, 정보기관은 1,000대로 추정했다. 그러나 실제로는 122대만 생산되었다. 이어서 1941년 6월에는 통계적으로는 244대, 정보기관에서는 1,550대로 추정되었고, 실제로는 271대가 생산되었다. 마지막으로 1942년 8월에는 통계적 추정치가 327대, 정보기관의 추정치가 1,550대로 나왔으며, 실제 생산된 탱크는 342대였다. 이를 통해 보면, 통계적 방법으로 추정한 생산 대수가 정보기관의 추정보다 실제 생산량에 더 가까웠음을 알 수 있다.</p>
 <table class="table">
-<thead>
-<tr class="header">
+<thead><tr class="header">
 <th style="text-align: center;">년월</th>
 <th style="text-align: center;">통계 추정</th>
 <th style="text-align: center;">정보기관 추정</th>
 <th style="text-align: center;">독일 생산대수</th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: center;">1940년 6월</td>
@@ -311,32 +401,23 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: center;">342</td>
 </tr>
 </tbody>
-</table>
-</section>
-<section id="통계-추정방법" class="level2" data-number="9.5">
-<h2 data-number="9.5" class="anchored" data-anchor-id="통계-추정방법"><span class="header-section-number">9.5</span> 통계 추정방법</h2>
-<p>독일 탱크 문제의 MLE 추정치는 관측된 탱크 일련 번호 간의 평균 간격을 기반으로 총 탱크 수를 추정한다.</p>
-<p>만약 <span class="math inline">\(k\)</span> 대의 탱크를 관측하고 최고 일련 번호가 <span class="math inline">\(m\)</span> 이라면, 평균 간격은 <span class="math inline">\(\frac{m}{k}\)</span>으로 <span class="math inline">\(m\)</span> 이후에 관측되지 않은 탱크가 대략 <span class="math inline">\(\frac{m}{k}\)</span> 대 더 있을 것으로 추정할 수 있다.</p>
-<p>따라서 <span class="math inline">\(N\)</span>에 대한 추정치는 다음과 같다:</p>
+</table></section><section id="통계-추정방법" class="level2" data-number="9.4"><h2 data-number="9.4" class="anchored" data-anchor-id="통계-추정방법">
+<span class="header-section-number">9.4</span> 통계 추정방법</h2>
+<p>MLE를 사용하여 독일 탱크의 총 생산 수를 추정하는 방법은 관측된 탱크의 일련 번호 간의 평균 간격을 기준으로 한다.</p>
+<p>예를 들어, 탱크 <span class="math inline">\(k\)</span> 대를 관측했을 때, 가장 큰 일련 번호가 <span class="math inline">\(m\)</span>이면, 평균적으로 탱크 사이의 간격은 <span class="math inline">\(\frac{m}{k}\)</span>이다. 이 간격을 기반으로, 번호 <span class="math inline">\(m\)</span> 이후에 아직 관측되지 않은 탱크는 대략 <span class="math inline">\(\frac{m}{k}\)</span> 대가 더 있을 것으로 예상된다.</p>
+<p>이 정보를 토대로, 전체 탱크 수에 대한 추정치 <span class="math inline">\(N\)</span>는 다음의 공식으로 구할 수 있다:</p>
 <p><span class="math display">\[
 N_{\text{추정치}} = m + \frac{m}{k} - 1
 \]</span></p>
-<ul>
-<li>독일 탱크 5대를 포획했다고 가정해보자.</li>
-<li>탱크들의 일련 번호는 다음과 같다: 2, 5, 7, 20, 31.</li>
-<li>가장 높은 일련 번호 <span class="math inline">\(m\)</span>은 31, 포획한 탱크 수 <span class="math inline">\(k\)</span>는 5대.</li>
-</ul>
-<p>총 탱크 수 <span class="math inline">\(N\)</span> 의 추정치를 계산하면 다음과 같다.</p>
+<p>독일군에서 5대의 탱크를 포획하였다고 상상해보자. 포획한 탱크의 일련 번호는 2, 5, 7, 20, 그리고 31이다. 여기서, 최대 일련 번호 <span class="math inline">\(m\)</span>은 31이고, 포획된 탱크의 총 수 <span class="math inline">\(k\)</span>는 5대이다.</p>
+<p>이 정보를 사용하여 탱크의 총 생산 수 <span class="math inline">\(N\)</span>을 추정하면:</p>
 <p><span class="math display">\[
 N_{\text{추정치}} = m + \frac{m}{k} - 1 = 31 + \frac{31}{5} - 1
 \]</span></p>
-<p>추정된 총 탱크 수 <span class="math inline">\(N_{\text{추정치}}\)</span>는 <strong>36.2</strong>, 따라서, 36 혹은 37대로 추정할 수 있다.</p>
+<p>따라서, <span class="math inline">\(N_{\text{추정}}\)</span>의 값은 36.2로, 총 탱크 수는 대략 36 또는 37대로 추정될 수 있다.</p>
 
 
-</section>
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -652,23 +733,19 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="./u_boats.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">유보드</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./clt.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">중심극한정리 예시</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./cs_napolean.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">나폴레옹 러시아 침공</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"selector":".lightbox","loop":true,"descPosition":"bottom","closeEffect":"zoom","openEffect":"zoom"});</script>
-
-
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","selector":".lightbox","openEffect":"zoom","loop":true,"descPosition":"bottom"});</script>
 
 
 </body></html>
