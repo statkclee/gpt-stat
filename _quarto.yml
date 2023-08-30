@@ -27,12 +27,12 @@ book:
 
     - part: "사례연구"
       chapters:
-        - cs_prussia.qmd
-        - u_boats.qmd
-        - cs_german_tank.qmd
-        - cs_napolean.qmd
-        - cs_bomber.qmd
         - cs_nightingale.qmd
+        - cs_napolean.qmd
+        - u_boats.qmd
+        - cs_prussia.qmd
+        - cs_german_tank.qmd
+        - cs_bomber.qmd
 
     - part: "출판"
       chapters:
