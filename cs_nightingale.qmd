@@ -20,7 +20,7 @@
 크림 전쟁 중 스쿠타리 막사는 투루키에 스쿠타리 병원에서 몇년간에 걸쳐 
 수작업으로 종이에 분석가능한 형태의 자료를 만들어내는 것은 결코 쉬운 작업이 아니다.
 
-![원본 데이터](images/nightingale_raw_data.webp)
+![원본 데이터](images/nightingale_raw_data.png)
 
 
 ## 그래프 진화
@@ -35,15 +35,15 @@
 
 ::: {#fig-nightingale layout-ncol=5}
 
-![막대그래프](images/nightingale_graph_01.webp){#fig-barchart}
+![막대그래프](images/nightingale_graph_01.png){#fig-barchart}
 
-![맨체스터 사망](images/nightingale_graph_02.webp){#fig-circular}
+![맨체스터 사망](images/nightingale_graph_02.png){#fig-circular}
 
-![빅토리아 여왕 보고(I)](images/nightingale_graph_03.webp){#fig-circular}
+![빅토리아 여왕 보고(I)](images/nightingale_graph_03.png){#fig-circular}
 
-![빅토리아 여왕 보고(II)](images/nightingale_graph_04.webp){#fig-circular}
+![빅토리아 여왕 보고(II)](images/nightingale_graph_04.png){#fig-circular}
 
-![빅토리아 여왕 보고(III)](images/nightingale_graph_05.webp){#fig-circular}
+![빅토리아 여왕 보고(III)](images/nightingale_graph_05.png){#fig-circular}
 
 나이팅게일 그래프 진화과정
 :::

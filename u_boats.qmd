@@ -4,6 +4,12 @@ editor_options:
   chunk_output_type: console
 ---
 
+```{r}
+#| echo: false
+
+source("_common.R")
+```
+
 # 유보드
 
 [@hendron2016germany]
@@ -117,8 +123,7 @@ uboat_tbl |>
 ```{r}
 
 # extrafont::font_import(pattern = "NanumSquare", prompt = FALSE)
-
-extrafont::loadfonts() 
+extrafont::loadfonts()
 
 uboat_tbl |> 
   mutate(fate_yearmon = floor_date(fate_date, "month")) |> 
@@ -127,7 +132,7 @@ uboat_tbl |>
   arrange(desc(침몰선박수)) |> 
   ggplot(aes(x = fate_yearmon, y = 침몰선박수)) +
     geom_line() +
-    theme_korean() +
+    theme_minimal() +
     labs(x ="",
          title = "월별 유보트 침몰선박수")
 ```
@@ -154,7 +159,7 @@ sunk_sf |>
     geom_sf(size = 0.5, aes(color = sunk_year)) +
     geom_sf(data = world) +
     facet_wrap( ~ sunk_year ) +
-    theme_korean() +
+    theme_minimal() +
     theme(legend.position = "none") +
     labs(title = "연도별 침몰 유보트 좌표")
 ```
@@ -324,7 +329,7 @@ uboat_yearmon |>
          x = "",
          y = "침몰선박수",
          caption = "자료출처: uboats.net") +
-    theme_korean() +
+    theme_minimal() +
     scale_color_manual(values = c("red", "blue")) +
     theme(legend.position = "top")
 ```

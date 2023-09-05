@@ -6,6 +6,7 @@ project:
   render:
     - "*.qmd"
     - "!*.Rmd"
+    - "!clt.qmd"
 
 lang: ko-KR
 date-format: "YYYY년 MM월 DD일"
@@ -34,9 +35,9 @@ book:
         - cs_german_tank.qmd
         - cs_bomber.qmd
 
-    - part: "출판"
-      chapters:
-        - clt.qmd
+    # - part: "출판"
+    #   chapters:
+        # - clt.qmd
     - references.qmd
 
 filters:
@@ -57,8 +58,17 @@ format:
     callout-appearance: simple
 
   pdf:
-    documentclass: scrreprt
+    documentclass: "oblivoir"
+    classoption: "chapter,a4paper,showtrims,openright,hidelinks"
+    pdf-engine: xelatex
     cite-method: biblatex
+    keep-tex: true
+    number-sections: true
+    toc: true
+
+mainfont: "NanumGothic"
+sansfont: "NanumGothic"
+monofont: "D2Coding"
 
 bibliography: references.bib
 csl: biomed-central.csl

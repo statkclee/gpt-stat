@@ -4,6 +4,12 @@ editor_options:
   chunk_output_type: console
 ---
 
+```{r}
+#| echo: false
+
+source("_common.R")
+```
+
 # 폭격비행기
 
 [andrewclem](http://www.andrewclem.com/War/) 웹사이트에 2차 세계대전 유럽전선과 태평양전선에 대한 전황지도가
@@ -137,7 +143,7 @@ summary_tbl |>
     coord_flip() +
     labs(x="",
          title = "제2차 세계대전 폭격기 부위별 피탄수") +
-    theme_korean() +
+    theme_minimal() +
     scale_y_continuous(labels = scales::comma)
 ```
 

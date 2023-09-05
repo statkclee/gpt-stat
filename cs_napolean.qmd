@@ -4,6 +4,12 @@ editor_options:
   chunk_output_type: console
 ---
 
+```{r}
+#| echo: false
+
+source("_common.R")
+```
+
 # 나폴레옹 러시아 침공
 
 나폴레옹의 러시아 원정은 1812년, 대륙봉쇄령을 강화하려는 의도로 시작되었다. 

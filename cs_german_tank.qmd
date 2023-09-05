@@ -4,6 +4,12 @@ editor_options:
   chunk_output_type: console
 ---
 
+```{r}
+#| echo: false
+
+source("_common.R")
+```
+
 # 독일 탱크 문제 
 
 
@@ -70,7 +76,7 @@ tank_tbl |>
          y = "생산 탱크수",
          title = "제2차 세계대전 연합국과 추축국 탱크 생산대수 비교",
          caption = "데이터 출처: 위키백과, https://en.wikipedia.org/wiki/Military_production_during_World_War_II") +
-    theme_korean()   +
+    theme_minimal()   +
     theme(legend.position = "none") +
     scale_fill_brewer(type = "qual", palette = "Set2")
 ```
