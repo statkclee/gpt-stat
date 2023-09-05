@@ -69,11 +69,12 @@ magick::image_write(pacific_ani, "fig/world_war_pacific.gif")
 
 ### 유럽전선
 
-![](images/world_war_europe.gif)
+![](images/ww2_europe.jpg)
 
 ### 태평양 전선
 
-![](images/world_war_pacific.gif)
+![](images/ww2_pacific.jpg)
+
 
 ## 대공포
 
@@ -102,6 +103,7 @@ magick::image_write(pacific_ani, "fig/world_war_pacific.gif")
 - Cockpit_Hits  : 전폭기 조종석
 
 ```{r}
+#| eval: false
 # tidyverse 패키지 불러오기
 library(tidyverse)
 
@@ -137,7 +139,7 @@ summary_tbl <- plane_tbl %>%
 summary_tbl
 # 계산 결과 확인
 
-summary_tbl |> 
+air_gg <- summary_tbl |> 
   ggplot(aes(x = fct_reorder(부위, 총피탄수), y = 총피탄수)) +
     geom_col(width = 0.3) +
     coord_flip() +
@@ -145,7 +147,14 @@ summary_tbl |>
          title = "제2차 세계대전 폭격기 부위별 피탄수") +
     theme_minimal() +
     scale_y_continuous(labels = scales::comma)
+
+ragg::agg_jpeg("images/air_gg.jpg",
+              width = 10, height = 7, units = "in", res = 600)
+air_gg
+dev.off()    
 ```
+
+![](images/air_gg.jpg)
 
 
 ## 보강

@@ -1,5 +1,7 @@
 suppressWarnings(suppressMessages({
 
+  extrafont::loadfonts()
+
   # 1. ggplot 그래프 ------------------------
   extrafont::loadfonts("win")
 

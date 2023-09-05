@@ -75,6 +75,8 @@ source("_common.R")
 
 
 ```{r minard-russian-table}
+#| warning: false
+
 library(HistData)
 library(tidyverse)
 library(gt)
@@ -116,9 +118,12 @@ retreat_gt <- retreat_tbl |>
     )  |> 
     tab_header(title = "후퇴")
 
-gtExtras::gt_two_column_layout(list(attack_gt, retreat_gt))
+attack_retreat_gt <- gtExtras::gt_two_column_layout(list(attack_gt, retreat_gt))
 
+# gtsave_extra(attack_retreat_gt, "images/attack_retreat_gt.png")
 ```
+
+![](images/attack_retreat_gt.png)
 
 
 ### 후퇴 기온

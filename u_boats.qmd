@@ -121,23 +121,33 @@ uboat_tbl |>
 
 
 ```{r}
-
+#| eval: false
 # extrafont::font_import(pattern = "NanumSquare", prompt = FALSE)
-extrafont::loadfonts()
+# extrafont::loadfonts()
 
-uboat_tbl |> 
+uboat_trends_gg <- uboat_tbl |> 
   mutate(fate_yearmon = floor_date(fate_date, "month")) |> 
   group_by(fate_yearmon) |> 
   summarise(침몰선박수 = sum(ships_sunk)) |> 
   arrange(desc(침몰선박수)) |> 
   ggplot(aes(x = fate_yearmon, y = 침몰선박수)) +
     geom_line() +
-    theme_minimal() +
+    theme_korean() +
     labs(x ="",
          title = "월별 유보트 침몰선박수")
+
+uboat_trends_gg
+
+ragg::agg_jpeg("images/uboat_trends_gg.jpg",
+              width = 10, height = 7, units = "in", res = 600)
+uboat_trends_gg
+dev.off()
 ```
 
+![](images/uboat_trends_gg.jpg)
+
 ```{r}
+#| eval: false
 library(giscoR)
 library(sf)
 
@@ -152,7 +162,7 @@ sunk_sf <- uboat_tbl |>
   drop_na() |> 
   st_as_sf(coords = c("fat_lon", "fate_lat"), crs = sf::st_crs(world))
 
-sunk_sf |> 
+sunk_sf_gg <- sunk_sf |> 
   mutate(sunk_year = case_when(sunk_year %in% c(1939, 1940) ~ "1939-40",
                    TRUE ~ sunk_year)) |> 
   ggplot() +
@@ -162,8 +172,17 @@ sunk_sf |>
     theme_minimal() +
     theme(legend.position = "none") +
     labs(title = "연도별 침몰 유보트 좌표")
+
+sunk_sf_gg
+
+ragg::agg_jpeg("images/sunk_sf_gg.jpg",
+              width = 10, height = 7, units = "in", res = 600)
+sunk_sf_gg
+dev.off()
+
 ```
 
+![](images/sunk_sf_gg.jpg)
 
 ## 목표선박 데이터
 
@@ -178,6 +197,7 @@ download.file(url = "https://raw.githubusercontent.com/kadenhendron/uboat-data/m
 국적별 총 침몰선박수를 표로 작성한다.
 
 ```{r}
+#| eval: false
 library(tidyverse)
 library(gt)
 library(gtExtras)
@@ -207,7 +227,7 @@ top10_iso <- tribble(~"nationality", ~"iso3c", ~"country_name", ~"country_name_k
 "Panamanian", "PAN",  "Panama", "파나마",
 "Canadian", "CAN",  "Canada", "캐나다")
 
-target_tbl |> 
+target_uboat_gt <- target_tbl |> 
   mutate(nationality = fct_lump(nationality, n = 9, other_level = "기타국가")) |> 
   group_by(nationality, yearmon) |> 
   summarise(선박수 = n()) |> 
@@ -250,15 +270,18 @@ target_tbl |>
       fmt_integer(columns = 선박수) |> 
       cols_align("center") |> 
       gt::fmt_missing(missing_text = "-")
+
+gtsave(target_uboat_gt, "images/target_uboat_gt.png")
 ```
 
+![](images/target_uboat_gt.png)
 
 ## 유보트 사령관
 
 [[Riding tables with {gt} and {gtExtras}](https://bjnnowak.netlify.app/2021/10/04/r-beautiful-tables-with-gt-and-gtextras/)]{.aside}
 
 ```{r}
-
+#| eval: false
 commander_uboat <- target_tbl |> 
   count(commander, name) |> 
   group_by(commander) |> 
@@ -268,7 +291,7 @@ commander_uboat <- target_tbl |>
   group_by(commander) |> 
   summarise(잠수함 = str_c(잠수함, collapse = ", "))
 
-target_tbl |> 
+target_commander_gt <- target_tbl |> 
   group_by(commander) |> 
   summarise(선박수 = n(),
             사망자수 = sum(dead, na.rm = TRUE),
@@ -299,7 +322,12 @@ target_tbl |>
     gt_plt_bar_pct(column = 선박수_그래프, scaled = FALSE, fill = "blue", background = "lightblue") |> 
     gt::tab_spanner(label = "총 침몰선박", columns = c(선박수, 선박수_그래프)) |> 
     cols_align("center")
+
+gtsave(target_commander_gt, "images/target_commander_gt.png")
+
 ```
+
+![](images/target_commander_gt.png)
 
 
 ## 유보트와 선박
@@ -310,6 +338,7 @@ target_tbl |>
 
 
 ```{r}
+#| eval: false
 uboat_yearmon <- uboat_tbl |> 
   mutate(년월 = floor_date(fate_date, "month")) |> 
   group_by(년월) |> 
@@ -320,7 +349,7 @@ target_yearmon <- target_tbl |>
   group_by(년월) |> 
   summarise(침몰수 = n()) 
 
-uboat_yearmon |> 
+uboat_yearmon_gg <- uboat_yearmon |> 
   left_join(target_yearmon) |> 
   pivot_longer(cols = 유보트수:침몰수, names_to = "구분", values_to = "선박수") |> 
   ggplot(aes(x = 년월, y = 선박수, color = 구분)) +
@@ -332,6 +361,12 @@ uboat_yearmon |>
     theme_minimal() +
     scale_color_manual(values = c("red", "blue")) +
     theme(legend.position = "top")
+
+ragg::agg_jpeg("images/uboat_yearmon_gg.jpg",
+              width = 10, height = 7, units = "in", res = 600)
+uboat_yearmon_gg
+dev.off()
+
 ```
 
-
+![](images/uboat_yearmon_gg.jpg)

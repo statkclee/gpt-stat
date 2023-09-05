@@ -12,19 +12,22 @@ lang: ko-KR
 date-format: "YYYY년 MM월 DD일"
 
 book:
-  title: "GPT 통계"
-  author: "이광춘"
+  title: "챗GPT 통계"
+  author:
+    - name: "이광춘"
+      affiliations: "비영리법인 한국 R 사용자회"
   date: last-modified
+  date-format: "YYYY년 MM월 DD일"
   chapters:
     - index.qmd
     - part: "데이터 관리"
       chapters:
-      - data_mgmt.qmd
-      - database_mgmt.qmd
-      - document.qmd
-      - document_auto.qmd
-      - model.qmd
-      - model_value.qmd
+        - data_mgmt.qmd
+        - database_mgmt.qmd
+        - document.qmd
+        - document_auto.qmd
+        - model.qmd
+        - model_value.qmd
 
     - part: "사례연구"
       chapters:
@@ -40,51 +43,18 @@ book:
         # - clt.qmd
     - references.qmd
 
-filters:
-   - lightbox
-lightbox: auto
-
-format:
-  html:
-    theme:
-      - cosmo
-      - chatGPT4ds.scss
-    number-depth: 3
-    number-sections: true
-    colorlinks: true
-    code-overflow: wrap
-    code-link: true
-    author-meta: "이광춘"
-    callout-appearance: simple
-
-  pdf:
-    documentclass: "oblivoir"
-    classoption: "chapter,a4paper,showtrims,openright,hidelinks"
-    pdf-engine: xelatex
-    cite-method: biblatex
-    keep-tex: true
-    number-sections: true
-    toc: true
-
-mainfont: "NanumGothic"
-sansfont: "NanumGothic"
-monofont: "D2Coding"
+  cover-image: hexlogo/bitPublish_logo.png
 
 bibliography: references.bib
-csl: biomed-central.csl
-link-citations: true
-
+link-citations: false
 
 knitr:
   opts_chunk:
     message: false
     warning: false
-    collapse: false
+    collapse: true
+    comment: "#>"
+    R.options:
+      knitr.graphics.auto_pdf: true
 editor_options:
   chunk_output_type: console
-
-
-execute:
-  freeze: auto
-
-editor: source

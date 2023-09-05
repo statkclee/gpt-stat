@@ -1,3 +1,8 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
 
 # 나이팅게일
 
@@ -126,6 +131,7 @@ death_viz
 추가적으로, 'showtext' 패키지로 구글 "Noto Serif KR" 글꼴을 선택적용하고, 'hrbrthemes' 라이브러리를 이용하여 뒷 배경 검정색을 사용하여 붉은색 질병으로 인한 사망자수 확연한 감소를 시각적으로 강조한다.
 
 ```{r}
+#| eval: false
 library(hrbrthemes) 
 library(showtext)
 showtext.auto()
@@ -158,7 +164,15 @@ death_gg <- death_viz %>%
         strip.text = element_text(color = "white", size = 25, face = "bold", family = noto_font, hjust = 0.5))
 
 death_gg
+
+ragg::agg_jpeg("images/death_gg.jpg",
+              width = 10, height = 7, units = "in", res = 600)
+death_gg
+dev.off()
+
 ```
+
+![](images/death_gg.jpg)
 
 
 ### 선그래프
@@ -166,7 +180,8 @@ death_gg
 나이팅게일은 간호 분야의 선구자로 잘 알려져 있지만, 통계학자로서 "콕스콤(CoxComb)" 또는 "장미 다이어그램"(Rose Diagram)으로 알려진 원그래프를 제시하였지만 현재는 시간의 흐름에 따라 병사 사망자수 변화를 조치 전후로 명확히 하는 방법으로 선그래프가 기본 기법으로 자리잡고 있다.
 
 ```{r}
-extrafont::loadfonts()
+#| eval: false
+# extrafont::loadfonts()
 
 death_new_gg <- death_viz |> 
   ggplot(aes(x = Date, y = 사망자수, color = 사망원인)) +
@@ -201,14 +216,23 @@ death_new_gg <- death_viz |>
              size = 8.5, color = "gray15", family = noto_font)          
 
 death_new_gg
+
+ragg::agg_jpeg("images/death_new_gg.jpg",
+              width = 10, height = 7, units = "in", res = 600)
+death_new_gg
+dev.off()
 ```
+
+![](images/death_new_gg.jpg)
+
 
 ### 막대그래프
 
 동일한 정보를 막대그래프를 통해 시각화를 할 수도 있다. 원그래프와 비교하여 보면 명확하게 사망자수를 직관적으로 비교할 수 있다는 점에서 큰 장점이 있다.
 
 ```{r}
-death_viz |> 
+#| eval: false
+death_viz_bar_gg <- death_viz |> 
   ggplot() +
     geom_col(aes(x = Date, y = 사망자수, fill = 사망원인), colour="white") +
     geom_vline(xintercept = as.Date("1855-03-15"), linetype= 2) +
@@ -239,7 +263,17 @@ death_viz |>
              size = 8.5, color = "gray30", family = noto_font) +
     annotate("text", x = as.Date("1855-09-01"), y = 1140, label = "조치이후",
              size = 8.5, color = "gray15", family = noto_font) 
+
+death_viz_bar_gg
+
+ragg::agg_jpeg("images/death_viz_bar_gg.jpg",
+              width = 10, height = 7, units = "in", res = 600)
+death_viz_bar_gg
+dev.off()
+
 ```
+
+![](images/death_viz_bar_gg.jpg)
 
 
 ## 표 문법
