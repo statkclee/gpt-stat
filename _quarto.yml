@@ -1,6 +1,7 @@
 project:
   type: book
-  output-dir: docs
+  output-dir: docs # HTML
+  # output-dir: pdfs # PDF
   resources:
     - "data/*.mp3"
   render:
@@ -38,8 +39,10 @@ book:
         - cs_german_tank.qmd
         - cs_bomber.qmd
 
-    # - part: "출판"
-    #   chapters:
+    - part: "통계책"
+      chapters:
+        - webr.qmd
+        - shinylive.qmd
         # - clt.qmd
     - references.qmd
 
@@ -58,3 +61,10 @@ knitr:
       knitr.graphics.auto_pdf: true
 editor_options:
   chunk_output_type: console
+
+filters:
+  - webr
+  - shinylive
+
+engine: knitr
+
